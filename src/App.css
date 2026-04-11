@@ -1,0 +1,66 @@
+.placeholder {
+  width: 100vw;
+  height: 100vh;
+  background: var(--color-desktop);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.placeholder__crt {
+  position: relative;
+  width: min(680px, 86vw);
+  padding: var(--space-7) var(--space-6);
+  background: var(--color-terminal-bg);
+  border-radius: 18px;
+  border: 1px solid rgba(212, 118, 26, 0.18);
+  box-shadow:
+    inset 0 0 80px rgba(0, 0, 0, 0.6),
+    0 30px 80px rgba(0, 0, 0, 0.6),
+    var(--shadow-glow);
+  overflow: hidden;
+}
+
+.placeholder__crt::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.22) 0px,
+    rgba(0, 0, 0, 0.22) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: multiply;
+}
+
+.placeholder__inner {
+  font-family: var(--font-mono);
+  color: var(--color-terminal-text);
+  font-size: var(--fs-md);
+  text-shadow: var(--text-glow);
+  letter-spacing: 0.02em;
+}
+
+.placeholder__line {
+  margin: var(--space-2) 0;
+}
+
+.placeholder__line--cursor span::after {
+  content: '';
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  margin-left: 2px;
+  background: var(--color-terminal-text);
+  vertical-align: text-bottom;
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes blink {
+  50% {
+    background: transparent;
+  }
+}
