@@ -1,17 +1,16 @@
-import './App.css';
+import styles from './App.module.css';
+import { About } from '@/components/about/About';
+import { Cursor } from '@/components/cursor/Cursor';
+import { Home } from '@/components/home/Home';
 
 export default function App() {
   return (
-    <main className="placeholder">
-      <div className="placeholder__crt">
-        <div className="placeholder__inner">
-          <p className="placeholder__line">themoorish.os 0.1.0</p>
-          <p className="placeholder__line">loading desktop...</p>
-          <p className="placeholder__line placeholder__line--cursor">
-            <span>ready_</span>
-          </p>
-        </div>
+    <>
+      <div className={styles.frame}>
+        <Home />
+        <About />
       </div>
-    </main>
+      <Cursor />
+    </>
   );
 }

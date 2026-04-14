@@ -1,0 +1,357 @@
+.root {
+  position: relative;
+  height: calc(100vh - var(--frame-inset) * 2);
+  background: var(--color-bg);
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  padding: 32px 48px 16px;
+  overflow: hidden;
+}
+
+/* ── top bar ───────────────────────────────────────────────────── */
+.topBar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  width: calc(100% + 96px);
+  margin: -32px -48px 0;
+  padding: 18px 48px;
+  padding-right: 51px;
+  position: relative;
+}
+
+.topItem {
+  overflow: hidden;
+  display: inline-flex;
+}
+
+.topItem > * {
+  transform: translateY(110%);
+  animation: revealUp 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+.logo {
+  justify-self: start;
+}
+
+.logo img {
+  height: 15px;
+  width: auto;
+  display: block;
+}
+
+.center {
+  justify-self: center;
+}
+
+.end {
+  justify-self: end;
+}
+
+.topLabel {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  color: var(--color-text);
+  text-transform: uppercase;
+}
+
+/*
+ * .tapIn — "tap in" label with an infinite rolling letter animation.
+ * Each letter rotates backward around the X-axis in sequence (top
+ * tips away from the viewer, rolls all the way around, lands back
+ * in place), then the whole sequence waits out the remainder of the
+ * cycle before repeating.
+ */
+.tapIn {
+  perspective: 520px;
+  perspective-origin: 50% 50%;
+  transform-style: preserve-3d;
+}
+
+/*
+ * Each letter is a 3D panel with two faces: a front face at +0.55em
+ * and a back face (same glyph, pre-rotated 180°) at -0.55em. When the
+ * panel rolls on its horizontal axis, the upright back face swings in
+ * as the front face swings out — no mirrored/inverted frames, no
+ * flattening-to-zero-width flicker.
+ */
+.tapLetter {
+  display: inline-grid;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: tapRoll 5s cubic-bezier(0.86, 0, 0.07, 1) infinite;
+  animation-delay: calc(2100ms + var(--i, 0) * 110ms);
+  will-change: transform;
+}
+
+.tapFace {
+  grid-area: 1 / 1;
+  display: inline-block;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: translate3d(0, 0, 0.9em);
+  white-space: nowrap;
+}
+
+.tapFaceBack {
+  transform: rotateX(180deg) translate3d(0, 0, 0.9em);
+}
+
+@keyframes tapRoll {
+  0%,
+  6% {
+    transform: rotateX(0);
+    animation-timing-function: cubic-bezier(0.86, 0, 0.07, 1);
+  }
+  28% {
+    transform: rotateX(-180deg);
+    animation-timing-function: linear;
+  }
+  100% {
+    transform: rotateX(-180deg);
+  }
+}
+
+/*
+ * .navButton — hoverable Menu / Contact items.
+ * On hover a #54623F rectangle grows from bottom → top behind the
+ * text, and the text flips to black. The pseudo-element sits behind
+ * the text via `isolation: isolate` + negative z-index.
+ */
+.navButton {
+  position: relative;
+  isolation: isolate;
+  padding: 14px 14px;
+  cursor: pointer;
+  color: var(--color-text);
+}
+
+.navButton::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #54623f;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: -1;
+}
+
+.navButton:hover::before,
+.navButton:focus-visible::before {
+  transform: scaleY(1);
+}
+
+/*
+ * .burger — two long horizontal lines stacked to form a minimal
+ * menu icon. Lives inside .navButton so it inherits the hover
+ * rectangle reveal.
+ */
+.burger {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 7px;
+  padding: 14px 0 14px 14px;
+}
+
+/* burger uses a different hover affordance — disable the rectangle
+   reveal inherited from .navButton */
+.burger::before {
+  content: none;
+}
+
+.burgerLine {
+  display: block;
+  width: 48px;
+  height: 2px;
+  background: var(--color-text);
+  transition: background-color 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.burger:hover .burgerLine,
+.burger:focus-visible .burgerLine {
+  background: #54623f;
+}
+
+/* ── hero wordmark ─────────────────────────────────────────────── */
+.hero {
+  margin-top: 32px;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0.9;
+  flex-shrink: 0;
+}
+
+.heroInner {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  color: var(--color-text);
+  white-space: nowrap;
+  /* font-size is computed at runtime by useFitText so the wordmark
+     spans the exact container width without distorting glyphs */
+  transform: translateY(110%);
+  animation: revealUp 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 120ms;
+  will-change: transform;
+}
+
+/* ── hero image ────────────────────────────────────────────────── */
+/*
+ * The image below the wordmark reveals with a "height grows from the
+ * bottom" effect — we animate clip-path from inset(100% 0 0 0) to
+ * inset(0), so the visible portion grows upward from the bottom edge.
+ * Delayed until after the top-bar items finish revealing (~1300ms).
+ */
+.media {
+  margin-top: 44px;
+  margin-bottom: 32px;
+  align-self: center;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: auto;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  clip-path: inset(100% 0 0 0);
+  animation: revealFromBottom 1.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 1300ms;
+}
+
+.mediaImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transform-origin: center center;
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.media:hover .mediaImg {
+  transform: scale(1.06);
+}
+
+@keyframes revealFromBottom {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* ── animation ─────────────────────────────────────────────────── */
+@keyframes revealUp {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/*
+ * ── frame borders ─────────────────────────────────────────────────
+ * The hero frame is drawn by four lines + the top-bar divider, all
+ * animated on load AFTER the wordmark, top bar and image have finished
+ * revealing (≈2400ms). Horizontal lines draw first, expanding from the
+ * centre outward; vertical lines follow, drawn from the top down.
+ */
+.frameLine {
+  position: absolute;
+  background: var(--color-text);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.frameTop,
+.frameBottom,
+.topBarDivider {
+  left: 0;
+  right: 0;
+  height: var(--frame-border);
+  transform: scaleX(0);
+  transform-origin: 50% 50%;
+  animation: drawX 700ms cubic-bezier(0.77, 0, 0.18, 1) forwards;
+}
+
+.frameTop {
+  top: 0;
+  animation-delay: 2500ms;
+}
+
+.frameBottom {
+  bottom: 0;
+  animation-delay: 2500ms;
+}
+
+.topBarDivider {
+  bottom: 0;
+  animation-delay: 2600ms;
+}
+
+.frameLeft,
+.frameRight {
+  top: 0;
+  bottom: 0;
+  width: var(--frame-border);
+  transform: scaleY(0);
+  transform-origin: 50% 0%;
+  animation: drawY 800ms 3100ms cubic-bezier(0.77, 0, 0.18, 1) forwards;
+}
+
+.frameLeft {
+  left: 0;
+}
+
+.frameRight {
+  right: 0;
+}
+
+@keyframes drawX {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes drawY {
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@media (max-width: 720px) {
+  .root {
+    padding: 20px 20px;
+  }
+  .hero {
+    margin-top: 24px;
+  }
+  .topLabel {
+    font-size: 12px;
+  }
+  .logo img {
+    height: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .topItem > *,
+  .heroInner {
+    animation: none;
+    transform: none;
+  }
+  .media {
+    animation: none;
+    clip-path: inset(0);
+  }
+}

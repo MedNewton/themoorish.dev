@@ -1,0 +1,4 @@
+.frame {
+  margin: var(--frame-inset);
+  background: var(--color-bg);
+}

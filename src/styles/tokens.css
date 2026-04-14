@@ -1,78 +1,11 @@
-/*
- * themoorish.dev — design tokens
- * Single source of truth for colors, spacing, type, radii, shadows.
- * See portfolio.md §5 for the locked palette.
- */
-
 :root {
-  /* ── palette ─────────────────────────────────────────────────── */
-  --color-desktop: #1b1816;             /* near-black, slight warmth */
+  --color-bg: #0f0f0f;
+  --color-text: #ecf0e6;
 
-  --color-chrome-light: #f0ebe2;        /* warm bone */
-  --color-chrome-mid: #d4ccba;
-  --color-chrome-dark: #b8b0a0;
-  --color-chrome-line: #c8c0b0;         /* pinstripe / border */
+  --font-display: 'BBH Bartle', 'Arial Black', sans-serif;
+  --font-body: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  --font-mono: 'Azeret Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  --color-text: #2a2520;                /* body text on chrome */
-  --color-text-strong: #1b1816;         /* title bar text */
-  --color-text-muted: #6e665a;
-
-  --color-terminal-bg: #0f0d0a;
-  --color-terminal-text: #d4761a;       /* saffron */
-  --color-terminal-dim: #8a4e11;
-
-  --color-accent: #d4761a;              /* saffron — the only accent */
-  --color-accent-glow: rgba(212, 118, 26, 0.45);
-
-  --color-error: #c14a3a;               /* close button */
-
-  /* ── shadows / glow ──────────────────────────────────────────── */
-  --shadow-window: 0 14px 40px rgba(0, 0, 0, 0.55),
-                   0 2px 6px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 24px var(--color-accent-glow);
-  --text-glow: 0 0 8px var(--color-accent-glow);
-
-  /* ── radii ───────────────────────────────────────────────────── */
-  --radius-window: 8px;
-  --radius-pill: 999px;
-  --radius-button: 6px;
-
-  /* ── spacing scale ───────────────────────────────────────────── */
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 24px;
-  --space-6: 32px;
-  --space-7: 48px;
-
-  /* ── type ────────────────────────────────────────────────────── */
-  --font-ui:
-    -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui,
-    sans-serif;
-  --font-mono:
-    'JetBrains Mono', 'Geist Mono', 'SF Mono', 'Menlo', 'Consolas',
-    monospace;
-
-  --fs-xs: 11px;
-  --fs-sm: 12px;
-  --fs-base: 14px;
-  --fs-md: 16px;
-  --fs-lg: 20px;
-  --fs-xl: 28px;
-
-  /* ── layout ──────────────────────────────────────────────────── */
-  --menu-bar-height: 28px;
-  --dock-height: 64px;
-  --z-window-base: 10;
-  --z-window-focused: 20;
-  --z-menu-bar: 100;
-  --z-dock: 100;
-  --z-boot: 1000;
-  --z-crt: 9999;
-
-  /* ── motion ──────────────────────────────────────────────────── */
-  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --duration-fast: 120ms;
-  --duration-base: 200ms;
+  --frame-inset: 16px;
+  --frame-border: 3px;
 }
