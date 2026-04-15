@@ -66,7 +66,9 @@ export function About() {
       <span className={`${styles.frameLine} ${styles.frameBottom}`} />
 
       <header className={styles.header}>
-        <h2 className={styles.heading}>About</h2>
+        <h2 className={styles.heading}>
+          <span className={styles.headingInner}>About</span>
+        </h2>
         <span className={`${styles.frameLine} ${styles.headerDivider}`} />
       </header>
 

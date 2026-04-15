@@ -1,0 +1,232 @@
+.root {
+  position: relative;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* ── frame borders (mirrors About) ───────────────────────────────── */
+.frameLine {
+  position: absolute;
+  background: var(--color-text);
+  z-index: 5;
+  pointer-events: none;
+  transition-timing-function: cubic-bezier(0.77, 0, 0.18, 1);
+}
+
+.frameLeft,
+.frameRight {
+  top: 0;
+  bottom: 0;
+  width: var(--frame-border);
+  transform: scaleY(0);
+  transform-origin: 50% 0%;
+  transition: transform 900ms;
+}
+
+.frameLeft {
+  left: 0;
+}
+
+.frameRight {
+  right: 0;
+}
+
+.frameBottom,
+.headerDivider {
+  left: 0;
+  right: 0;
+  height: var(--frame-border);
+  transform: scaleX(0);
+  transform-origin: 50% 50%;
+  transition: transform 700ms;
+}
+
+.frameBottom {
+  bottom: 0;
+  transition-delay: 900ms;
+}
+
+.headerDivider {
+  bottom: 0;
+  transition-delay: 700ms;
+}
+
+.revealed .frameLeft,
+.revealed .frameRight {
+  transform: scaleY(1);
+}
+
+.revealed .frameBottom,
+.revealed .headerDivider {
+  transform: scaleX(1);
+}
+
+/* ── content ─────────────────────────────────────────────────────── */
+.header {
+  position: relative;
+  padding: 28px 48px;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 80px);
+  font-weight: 900;
+  text-transform: uppercase;
+  line-height: 1;
+  margin: 0;
+  overflow: hidden;
+}
+
+.headingInner {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 1200ms;
+  will-change: transform;
+}
+
+.revealed .headingInner {
+  transform: translateY(0);
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.item {
+  position: relative;
+  padding: 48px;
+}
+
+.item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: var(--frame-border);
+  background: var(--color-text);
+}
+
+.item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: var(--frame-border);
+  background: var(--color-text);
+}
+
+.item:nth-child(odd)::before {
+  content: none;
+}
+
+.item:nth-child(-n + 2)::after {
+  content: none;
+}
+
+.itemLink {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.itemHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.itemNameClip,
+.itemArrowClip {
+  display: inline-flex;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.itemName {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: clamp(22px, 2.2vw, 32px);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  transform: translateY(110%);
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(1500ms + var(--idx, 0) * 120ms);
+  will-change: transform;
+}
+
+.itemArrow {
+  display: inline-block;
+  width: clamp(22px, 2.2vw, 32px);
+  height: clamp(22px, 2.2vw, 32px);
+  color: var(--color-text);
+  transform: translateY(110%);
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+    color 220ms ease;
+  transition-delay: calc(1500ms + var(--idx, 0) * 120ms);
+  will-change: transform;
+}
+
+.revealed .itemName,
+.revealed .itemArrow {
+  transform: translateY(0);
+}
+
+.itemArrowHover {
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 220ms ease;
+}
+
+.itemLink:hover .itemArrowHover {
+  transform: translate(4px, -4px);
+  color: #54623f;
+}
+
+.itemCard {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #2a2a2a;
+  overflow: hidden;
+  clip-path: inset(100% 0 0 0);
+  transition: clip-path 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(1800ms + var(--idx, 0) * 120ms);
+}
+
+.revealed .itemCard {
+  clip-path: inset(0 0 0 0);
+}
+
+@media (max-width: 720px) {
+  .header {
+    padding: 20px 24px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .item {
+    padding: 28px 24px;
+  }
+  .item::before {
+    content: none;
+  }
+  .item:first-child::after {
+    content: none;
+  }
+  .item:not(:first-child)::after {
+    content: '';
+  }
+}
