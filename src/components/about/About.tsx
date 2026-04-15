@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
 import styles from './About.module.css';
 
 const SKILL_SLOTS: string[][] = [
@@ -9,31 +10,27 @@ const SKILL_SLOTS: string[][] = [
   ['UI Design', 'Motion', 'UX', 'Craft'],
 ];
 
-/*
- * RollingWord — a 4-sided drum. Each word sits on its own face, each
- * face pre-rotated to a fixed angle around the X-axis. The parent
- * rotates through -90°, -180°, -270°, -360° with long holds at each
- * stop, so exactly one word is upright at a time. No React state,
- * no iteration callbacks — the full cycle is pure CSS, which removes
- * the frame-timing race that caused the occasional glitch.
- */
+const longest = (words: string[]) =>
+  words.reduce((a, b) => (a.length >= b.length ? a : b));
+
 function RollingWord({ words, delay }: { words: string[]; delay: number }) {
+  const [i, setI] = useState(0);
+  const next = (i + 1) % words.length;
   return (
     <span
       className={styles.roll}
       style={{ animationDelay: `${delay}ms` }}
+      onAnimationIteration={() => {
+        flushSync(() => setI((x) => (x + 1) % words.length));
+      }}
     >
-      {words.map((w, idx) => (
-        <span
-          key={idx}
-          className={styles.rollFace}
-          style={{
-            transform: `rotateX(${90 * idx}deg) translateZ(0.62em)`,
-          }}
-        >
-          {w}
-        </span>
-      ))}
+      <span className={`${styles.rollFace} ${styles.rollSizer}`} aria-hidden>
+        {longest(words)}
+      </span>
+      <span className={styles.rollFace}>{words[i]}</span>
+      <span className={`${styles.rollFace} ${styles.rollFaceBack}`}>
+        {words[next]}
+      </span>
     </span>
   );
 }
