@@ -27,16 +27,6 @@ body {
   overflow-x: hidden;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  html,
-  body,
-  button,
-  a,
-  * {
-    cursor: none !important;
-  }
-}
-
 img,
 picture,
 video,
