@@ -1,0 +1,235 @@
+.questLog {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 20;
+  pointer-events: none;
+  max-width: min(74vw, 360px);
+}
+
+.questInner {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--panel);
+  border: 2px solid var(--panel-border);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5);
+  padding: 10px 14px 9px;
+  animation: questPop 420ms steps(4, end) both;
+}
+
+@keyframes questPop {
+  0% {
+    transform: translateX(-12px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.questUpdated {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--mint);
+  animation: blinkIn 1.2s steps(2, end) 2;
+}
+
+@keyframes blinkIn {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.chapterLabel {
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  color: var(--gold);
+  line-height: 1.1;
+}
+
+.questText {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--paper-dim);
+  letter-spacing: 0.5px;
+}
+
+.soundBtn {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 20;
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  color: var(--paper-dim);
+  background: var(--panel);
+  border: 2px solid var(--panel-border);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5);
+  padding: 8px 12px 6px;
+  transition:
+    color 120ms ease,
+    transform 120ms ease;
+}
+
+.soundBtn:hover {
+  color: var(--gold);
+  transform: translate(-1px, -1px);
+}
+
+.soundBtn[aria-pressed='true'] {
+  color: var(--mint);
+  border-color: var(--teal);
+}
+
+.journeyBar {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  width: min(64vw, 520px);
+}
+
+.barTrack {
+  position: relative;
+  height: 10px;
+  background: var(--panel);
+  border: 2px solid var(--panel-border);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5);
+}
+
+.barFill {
+  position: absolute;
+  inset: 1px;
+  width: calc((100% - 2px) * var(--journey));
+  background: repeating-linear-gradient(
+    90deg,
+    var(--gold) 0 6px,
+    var(--sand) 6px 12px
+  );
+}
+
+.waypoint {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: var(--night-2);
+  border: 2px solid var(--panel-border);
+  cursor: pointer;
+  transition:
+    background 150ms ease,
+    border-color 150ms ease,
+    transform 150ms cubic-bezier(0.2, 0.9, 0.3, 1.6);
+}
+
+.waypoint:hover {
+  transform: translate(-50%, -50%) rotate(45deg) scale(1.35);
+}
+
+.waypoint.reached {
+  background: var(--gold);
+  border-color: var(--sand);
+}
+
+.waypoint[aria-current='step'] {
+  background: var(--mint);
+  border-color: var(--teal);
+  animation: pulse 1.6s steps(3, end) infinite;
+}
+
+@keyframes pulse {
+  50% {
+    box-shadow: 0 0 0 4px rgba(77, 255, 210, 0.25);
+  }
+}
+
+.waypointTip {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-45deg) translateX(-6px);
+  transform-origin: bottom left;
+  white-space: nowrap;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  color: var(--gold);
+  background: var(--panel);
+  border: 2px solid var(--panel-border);
+  padding: 5px 8px 3px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 120ms ease;
+}
+
+.waypoint:hover .waypointTip,
+.waypoint:focus-visible .waypointTip {
+  opacity: 1;
+}
+
+.hint {
+  position: fixed;
+  bottom: 46px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 19;
+  font-family: var(--font-pixel);
+  font-size: 16px;
+  color: var(--gold);
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.6);
+  letter-spacing: 1px;
+  animation: hintFloat 1.4s steps(2, end) infinite;
+  transition: opacity 400ms ease;
+}
+
+.hintArrow {
+  display: inline-block;
+  animation: hintFloat 0.7s steps(2, end) infinite;
+}
+
+@keyframes hintFloat {
+  50% {
+    transform: translateY(3px);
+  }
+}
+
+.hintHidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .questLog {
+    top: 12px;
+    left: 12px;
+  }
+
+  .questText {
+    display: none;
+  }
+
+  .chapterLabel {
+    font-size: 14px;
+  }
+
+  .soundBtn {
+    top: 12px;
+    right: 12px;
+    font-size: 12px;
+    padding: 7px 9px 5px;
+  }
+
+  .journeyBar {
+    width: calc(100vw - 48px);
+    bottom: 14px;
+  }
+
+  .waypointTip {
+    display: none;
+  }
+}
