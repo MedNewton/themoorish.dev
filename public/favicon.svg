@@ -1,12 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="6" fill="#1b1816" />
-  <text
-    x="16"
-    y="22"
-    font-family="JetBrains Mono, monospace"
-    font-size="20"
-    font-weight="700"
-    text-anchor="middle"
-    fill="#d4761a"
-  >&gt;_</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" fill="#f2ecdd"/>
+  <rect x="4" y="4" width="56" height="56" fill="none" stroke="#1c1710" stroke-width="2"/>
+  <rect x="8" y="8" width="48" height="48" fill="none" stroke="#1c1710" stroke-width="1"/>
+  <text x="32" y="46" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="bold" font-size="38" fill="#1c1710">M</text>
+  <rect x="12" y="50" width="40" height="2" fill="#b3241c"/>
 </svg>

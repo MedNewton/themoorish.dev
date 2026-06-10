@@ -1,0 +1,456 @@
+.front {
+  position: relative;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: clamp(24px, 4vw, 48px) var(--page-pad) clamp(32px, 5vw, 64px);
+}
+
+/* A careless editor left his cup on the layout desk */
+.coffeeStain {
+  position: absolute;
+  top: 30px;
+  right: 6%;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 11px solid rgba(107, 78, 44, 0.13);
+  filter: blur(0.6px);
+  transform: rotate(-12deg) scaleX(1.04);
+  pointer-events: none;
+}
+
+.coffeeStain::after {
+  content: '';
+  position: absolute;
+  inset: -22px auto auto -30px;
+  width: 52px;
+  height: 30px;
+  border-radius: 50%;
+  border: 6px solid rgba(107, 78, 44, 0.09);
+  transform: rotate(18deg);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 0.75fr;
+  gap: clamp(20px, 3vw, 40px);
+}
+
+/* Column rules between the three desks */
+.grid > * + * {
+  border-left: 1px solid var(--rule-faint);
+  padding-left: clamp(20px, 3vw, 40px);
+}
+
+/* ── Lead story ───────────────────────────────────────────── */
+.headline {
+  font-family: var(--font-headline);
+  font-size: clamp(2.4rem, 5.4vw, 4.6rem);
+  line-height: 0.98;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  transition: text-shadow 0.3s ease;
+}
+
+/* Off-press ink ghosts when the reader leans in */
+.headline:hover {
+  text-shadow:
+    3px 0 0 var(--ghost-red),
+    -3px 0 0 var(--ghost-blue);
+}
+
+.lineClip {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+
+.line {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 0.9s var(--ease-out);
+}
+
+.ready .line {
+  transform: translateY(0);
+}
+
+.subhead {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(15px, 1.7vw, 19px);
+  line-height: 1.5;
+  margin: 18px 0 14px;
+  padding: 12px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.byline {
+  font-family: var(--font-body);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.byline strong {
+  color: var(--red);
+}
+
+.columns {
+  font-size: clamp(15px, 1.5vw, 16.5px);
+  line-height: 1.62;
+  text-align: justify;
+  hyphens: auto;
+  columns: 2;
+  column-gap: 28px;
+  column-rule: 1px solid var(--rule-faint);
+}
+
+.columns p + p {
+  margin-top: 0.85em;
+}
+
+.dropcap {
+  float: left;
+  font-family: var(--font-serif);
+  font-weight: 900;
+  font-size: 3.45em;
+  line-height: 0.82;
+  padding: 0.04em 0.12em 0 0;
+  color: var(--red);
+}
+
+.endMark {
+  margin-top: 18px;
+}
+
+.manicule {
+  font-size: 1.35em;
+  line-height: 0;
+  vertical-align: -0.12em;
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: var(--font-headline);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border: 2px solid var(--ink);
+  padding: 10px 18px;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s var(--ease-out);
+}
+
+.cta:hover,
+.cta:focus-visible {
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-2px);
+}
+
+/* ── Portrait ─────────────────────────────────────────────── */
+.figure {
+  align-self: start;
+}
+
+.halftone {
+  position: relative;
+  border: 1px solid var(--rule);
+  padding: 8px;
+  background: var(--paper-deep);
+  transition: transform 0.4s var(--ease-out);
+  will-change: transform;
+}
+
+.halftone img {
+  width: 100%;
+  height: auto;
+  filter: grayscale(1) contrast(1.12) sepia(0.22) brightness(1.02);
+  transition: filter 0.5s ease;
+}
+
+/* Halftone dot screen over the photo */
+.halftone::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  background-image: radial-gradient(
+    circle,
+    rgba(28, 23, 16, 0.5) 0.7px,
+    transparent 1.1px
+  );
+  background-size: 3.5px 3.5px;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.halftone:hover img {
+  filter: grayscale(0.25) contrast(1.05) sepia(0.08);
+}
+
+.stamp {
+  position: absolute;
+  top: 18px;
+  right: -10px;
+  z-index: 2;
+  font-family: var(--font-headline);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--red);
+  border: 2px solid var(--red);
+  padding: 6px 8px;
+  transform: rotate(8deg);
+  opacity: 0.85;
+  background: var(--paper);
+}
+
+.caption {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 12.5px;
+  line-height: 1.5;
+  padding-top: 8px;
+  color: var(--ink-soft);
+}
+
+/* ── Index column ─────────────────────────────────────────── */
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 2.5vw, 32px);
+  font-family: var(--font-body);
+}
+
+.asideTitle,
+.briefTitle {
+  font-family: var(--font-headline);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  border-top: 3px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 7px 0 6px;
+  margin-bottom: 12px;
+}
+
+.index {
+  list-style: none;
+  font-size: 14.5px;
+}
+
+.index li + li {
+  border-top: 1px dotted var(--rule-faint);
+}
+
+.index a {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 9px 2px;
+  transition: color 0.2s ease;
+}
+
+.index a:hover,
+.index a:focus-visible {
+  color: var(--red);
+}
+
+.dots {
+  flex: 1;
+  border-bottom: 1px dotted var(--rule-faint);
+  transform: translateY(-3px);
+}
+
+.brief {
+  border: 1px solid var(--rule);
+  padding: 14px;
+  background: var(--paper-deep);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.brief .briefTitle {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.briefLink {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: var(--font-type);
+  font-size: 12.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--red);
+  border-bottom: 1px solid var(--red);
+  transition: opacity 0.2s ease;
+}
+
+.briefLink:hover {
+  opacity: 0.7;
+}
+
+/* ── Below the fold ───────────────────────────────────────── */
+.fold {
+  position: relative;
+  margin: clamp(28px, 4vw, 48px) 0 clamp(20px, 3vw, 32px);
+  height: 14px;
+  display: grid;
+  place-items: center;
+  /* the physical crease of a folded broadsheet */
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(28, 23, 16, 0.07) 42%,
+    rgba(28, 23, 16, 0.16) 50%,
+    rgba(28, 23, 16, 0.07) 58%,
+    transparent 100%
+  );
+}
+
+.foldLabel {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 10.5px;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  background: var(--paper);
+  padding: 0 14px;
+}
+
+.belowFold {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(16px, 2.5vw, 28px);
+}
+
+.foldBox {
+  border: 1px solid var(--rule);
+  outline: 1px solid var(--rule);
+  outline-offset: -4px;
+  padding: 16px 16px 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.foldTitle {
+  font-family: var(--font-sc);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  text-align: center;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.foldBody {
+  font-size: 14px;
+  line-height: 1.6;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.weatherGlyph {
+  font-size: 34px;
+  text-align: center;
+  line-height: 1.2;
+  color: var(--ink-soft);
+  user-select: none;
+}
+
+.markets {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-type);
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+}
+
+.markets td {
+  padding: 5px 4px;
+  border-bottom: 1px dotted var(--rule-faint);
+}
+
+.markets td:nth-child(2) {
+  text-align: center;
+  font-size: 10px;
+}
+
+.markets td:last-child {
+  text-align: right;
+  font-weight: 700;
+}
+
+.markets .down td {
+  color: var(--red);
+}
+
+.obitMark {
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 15px;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 1060px) {
+  .grid {
+    grid-template-columns: 1.6fr 1fr;
+  }
+
+  .aside {
+    grid-column: 1 / -1;
+    border-left: 0;
+    padding-left: 0;
+    border-top: 3px solid var(--rule);
+    padding-top: 20px;
+    flex-direction: row;
+  }
+
+  .aside > * {
+    flex: 1;
+  }
+}
+
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .grid > * + * {
+    border-left: 0;
+    padding-left: 0;
+  }
+
+  .figure {
+    border-top: 1px solid var(--rule-faint);
+    padding-top: 20px;
+    max-width: 420px;
+  }
+
+  .columns {
+    columns: 1;
+  }
+
+  .aside {
+    flex-direction: column;
+  }
+
+  .belowFold {
+    grid-template-columns: 1fr;
+  }
+
+  .coffeeStain {
+    display: none;
+  }
+}
