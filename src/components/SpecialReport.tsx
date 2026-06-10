@@ -26,13 +26,20 @@ export default function SpecialReport() {
           </Reveal>
 
           <Reveal as="blockquote" className={styles.quote} delay={240}>
+            <span className={styles.quoteMark} aria-hidden="true">
+              “
+            </span>
             <p>
-              “Agents, tools and models are only as good as the plumbing between
-              them. I build the plumbing.”
+              Agents, tools and models are only as good as the plumbing between
+              them. I build the plumbing.
             </p>
             <cite>— The Editor, off the record</cite>
           </Reveal>
         </div>
+
+        <Reveal as="span" className={`end-mark ${styles.endMark}`} delay={300}>
+          — 30 —
+        </Reveal>
       </div>
     </section>
   );

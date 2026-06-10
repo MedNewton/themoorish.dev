@@ -65,9 +65,9 @@
   align-items: baseline;
   gap: 12px;
   flex-wrap: wrap;
-  font-family: var(--font-body);
-  font-size: clamp(10px, 1.3vw, 14px);
-  letter-spacing: 0.04em;
+  font-family: var(--font-sc);
+  font-size: clamp(10px, 1.2vw, 13.5px);
+  letter-spacing: 0.05em;
   border-top: 1px solid var(--rule);
   border-bottom: 3px solid var(--rule);
   padding: 7px 2px;
@@ -113,6 +113,16 @@
 .navLink {
   position: relative;
   padding: 2px 0;
+}
+
+/* Hand-set dot separators between sections */
+.navLink + .navLink::before {
+  content: '·';
+  position: absolute;
+  left: calc(-0.5 * clamp(14px, 3.5vw, 44px));
+  transform: translateX(-50%);
+  color: var(--ink-faint);
+  pointer-events: none;
 }
 
 .navLink::after {

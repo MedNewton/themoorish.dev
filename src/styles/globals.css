@@ -11,6 +11,9 @@ body {
   background: var(--paper);
   color: var(--ink);
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  font-synthesis: none;
+  font-variant-numeric: oldstyle-nums;
 }
 
 body[data-press='on'] {
@@ -97,6 +100,34 @@ section[id] {
 .rule-thin {
   border: 0;
   border-top: 1px solid var(--rule);
+}
+
+/* ── End-of-article mark, the journalist's “—30—” ────────── */
+.end-mark {
+  display: block;
+  text-align: center;
+  font-family: var(--font-type);
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  color: var(--ink-faint);
+  user-select: none;
+}
+
+/* ── Print like an actual newspaper ──────────────────────── */
+@media print {
+  .grain,
+  .skip-link {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  a {
+    color: inherit;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -190,6 +190,22 @@ export const dispatches: Dispatch[] = [
   },
 ];
 
+export interface MarketRow {
+  symbol: string;
+  move: 'up' | 'down';
+  quote: string;
+}
+
+export const marketRows: MarketRow[] = [
+  { symbol: 'TYPESCRIPT', move: 'up', quote: '99.4' },
+  { symbol: 'REACT', move: 'up', quote: '98.7' },
+  { symbol: 'NEXT.JS', move: 'up', quote: '97.2' },
+  { symbol: 'SOLIDITY', move: 'up', quote: '94.1' },
+  { symbol: 'A.I. AGENTS', move: 'up', quote: '96.8' },
+  { symbol: 'COFFEE', move: 'up', quote: '∞' },
+  { symbol: 'BUGS', move: 'down', quote: '0.3' },
+];
+
 export const aiBullets = [
   'Design and implementation of A.I. agents and multi-agent systems.',
   'MCP (Model Context Protocol) servers and clients — wiring tools, APIs and external systems straight into LLMs.',

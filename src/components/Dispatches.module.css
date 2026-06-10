@@ -16,11 +16,10 @@
 }
 
 .kicker {
-  font-family: var(--font-body);
-  font-size: 12px;
+  font-family: var(--font-sc);
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  letter-spacing: 0.14em;
   color: var(--red);
 }
 
@@ -101,11 +100,20 @@ a.story:focus-visible {
   font-weight: 700;
   font-size: clamp(1.2rem, 1.9vw, 1.5rem);
   line-height: 1.18;
-  transition: color 0.25s ease;
 }
 
-a.story:hover .headline {
-  color: var(--red);
+/* Red ink bleeds in under the headline */
+.headline {
+  background-image: linear-gradient(var(--red), var(--red));
+  background-repeat: no-repeat;
+  background-position: 0 96%;
+  background-size: 0% 2px;
+  transition: background-size 0.45s var(--ease-out);
+}
+
+a.story:hover .headline,
+a.story:focus-visible .headline {
+  background-size: 100% 2px;
 }
 
 .dek {

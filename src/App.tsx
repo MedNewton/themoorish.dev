@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Preloader from './components/Preloader';
+import ProgressRule from './components/ProgressRule';
 import StickyNav from './components/StickyNav';
 import Masthead from './components/Masthead';
 import Ticker from './components/Ticker';
@@ -20,6 +21,7 @@ export default function App() {
         Skip to content
       </a>
       <StickyNav />
+      <ProgressRule />
       <Masthead ready={ready} />
       <Ticker />
       <main>

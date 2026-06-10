@@ -1,9 +1,17 @@
+import { useRef, type MouseEvent } from 'react';
 import clsx from 'clsx';
 import styles from './FrontPage.module.css';
 import Reveal from './Reveal';
-import { identity } from '../data/content';
+import { identity, marketRows } from '../data/content';
 
 const headlineLines = ['ENGINEER SHIPS', 'FULL-STACK, WEB3', '& A.I. PRODUCTS'];
+
+const indexEntries = [
+  { href: '#trade-pages', label: 'The Trade Pages', page: 'A2' },
+  { href: '#dispatches', label: 'Latest Dispatches', page: 'A3' },
+  { href: '#special-report', label: 'Special Report: A.I.', page: 'A4' },
+  { href: '#letters', label: 'Letters to the Editor', page: 'A5' },
+];
 
 function dateline() {
   return new Date()
@@ -16,11 +24,28 @@ interface FrontPageProps {
 }
 
 export default function FrontPage({ ready }: FrontPageProps) {
+  const tiltRef = useRef<HTMLDivElement>(null);
+
+  const handleTilt = (event: MouseEvent<HTMLDivElement>) => {
+    const node = tiltRef.current;
+    if (!node || window.matchMedia('(prefers-reduced-motion: reduce)').matches)
+      return;
+    const rect = node.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    node.style.transform = `perspective(900px) rotateY(${x * 7}deg) rotateX(${y * -7}deg)`;
+  };
+
+  const resetTilt = () => {
+    if (tiltRef.current) tiltRef.current.style.transform = '';
+  };
+
   return (
     <section
       id="front-page"
       className={clsx(styles.front, ready && styles.ready)}
     >
+      <div className={styles.coffeeStain} aria-hidden="true" />
       <div className={styles.grid}>
         {/* ── Lead story ────────────────────────────────────── */}
         <article className={styles.lead}>
@@ -68,14 +93,23 @@ export default function FrontPage({ ready }: FrontPageProps) {
               feature. The story develops below.
             </p>
           </div>
+          <span className={clsx('end-mark', styles.endMark)}>— 30 —</span>
           <a className={styles.cta} href="#dispatches">
-            Continued on the Dispatches page <span aria-hidden="true">→</span>
+            <span className={styles.manicule} aria-hidden="true">
+              ☞
+            </span>{' '}
+            Continued on the Dispatches page
           </a>
         </article>
 
         {/* ── Portrait ──────────────────────────────────────── */}
         <Reveal as="figure" className={styles.figure} delay={150}>
-          <div className={styles.halftone}>
+          <div
+            ref={tiltRef}
+            className={styles.halftone}
+            onMouseMove={handleTilt}
+            onMouseLeave={resetTilt}
+          >
             <img
               src="/med-img1.webp"
               alt={`Portrait of ${identity.name}`}
@@ -100,34 +134,15 @@ export default function FrontPage({ ready }: FrontPageProps) {
           <Reveal delay={250}>
             <h3 className={styles.asideTitle}>Inside This Issue</h3>
             <ul className={styles.index}>
-              <li>
-                <a href="#trade-pages">
-                  <span>The Trade Pages</span>
-                  <span className={styles.dots} />
-                  <span>§2</span>
-                </a>
-              </li>
-              <li>
-                <a href="#dispatches">
-                  <span>Latest Dispatches</span>
-                  <span className={styles.dots} />
-                  <span>§3</span>
-                </a>
-              </li>
-              <li>
-                <a href="#special-report">
-                  <span>Special Report: A.I.</span>
-                  <span className={styles.dots} />
-                  <span>§4</span>
-                </a>
-              </li>
-              <li>
-                <a href="#letters">
-                  <span>Letters to the Editor</span>
-                  <span className={styles.dots} />
-                  <span>§5</span>
-                </a>
-              </li>
+              {indexEntries.map((entry) => (
+                <li key={entry.href}>
+                  <a href={entry.href}>
+                    <span>{entry.label}</span>
+                    <span className={styles.dots} />
+                    <span>{entry.page}</span>
+                  </a>
+                </li>
+              ))}
             </ul>
           </Reveal>
 
@@ -145,6 +160,53 @@ export default function FrontPage({ ready }: FrontPageProps) {
             </div>
           </Reveal>
         </aside>
+      </div>
+
+      {/* ── Below the fold ──────────────────────────────────── */}
+      <div className={styles.fold} aria-hidden="true">
+        <span className={styles.foldLabel}>· the fold ·</span>
+      </div>
+      <div className={styles.belowFold}>
+        <Reveal as="article" className={styles.foldBox}>
+          <h3 className={styles.foldTitle}>The Weather Bureau</h3>
+          <p className={styles.weatherGlyph} aria-hidden="true">
+            ☀
+          </p>
+          <p className={styles.foldBody}>
+            <strong>TODAY:</strong> Heavy shipping with scattered deploys.
+            Visibility: type-safe. Winds of change at 100 WPM.{' '}
+            <strong>TONIGHT:</strong> Clear skies, dark mode.
+          </p>
+        </Reveal>
+
+        <Reveal as="article" className={styles.foldBox} delay={120}>
+          <h3 className={styles.foldTitle}>The Markets · Skills Exchange</h3>
+          <table className={styles.markets}>
+            <tbody>
+              {marketRows.map((row) => (
+                <tr
+                  key={row.symbol}
+                  className={row.move === 'down' ? styles.down : undefined}
+                >
+                  <td>{row.symbol}</td>
+                  <td aria-hidden="true">{row.move === 'up' ? '▲' : '▼'}</td>
+                  <td>{row.quote}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Reveal>
+
+        <Reveal as="article" className={styles.foldBox} delay={240}>
+          <h3 className={styles.foldTitle}>Obituaries</h3>
+          <p className={styles.foldBody}>
+            <strong>BUG, Production</strong> — aged 3 minutes, passed away
+            suddenly following a hotfix on {dateline().toLowerCase()}. Survived
+            by its regression test. In lieu of flowers, the family requests code
+            reviews.
+          </p>
+          <span className={clsx('end-mark', styles.obitMark)}>✝</span>
+        </Reveal>
       </div>
     </section>
   );

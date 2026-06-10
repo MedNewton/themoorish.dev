@@ -35,6 +35,34 @@
   max-width: 44ch;
 }
 
+.barcodeBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.barcode {
+  width: 110px;
+  height: 30px;
+  background: repeating-linear-gradient(
+    to right,
+    var(--ink) 0 2px,
+    transparent 2px 4px,
+    var(--ink) 4px 7px,
+    transparent 7px 9px,
+    var(--ink) 9px 10px,
+    transparent 10px 13px
+  );
+}
+
+.barcodeText {
+  font-family: var(--font-type);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+
 .top {
   font-family: var(--font-headline);
   font-size: 12px;

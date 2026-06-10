@@ -15,6 +15,7 @@ interface PreloaderProps {
 
 export default function Preloader({ onDone }: PreloaderProps) {
   const [progress, setProgress] = useState(0);
+  const [stamped, setStamped] = useState(false);
   const [exiting, setExiting] = useState(false);
   const [gone, setGone] = useState(false);
   const doneRef = useRef(onDone);
@@ -37,12 +38,16 @@ export default function Preloader({ onDone }: PreloaderProps) {
       if (t < 1) {
         raf = requestAnimationFrame(tick);
       } else {
-        setTimeout(() => {
-          setExiting(true);
-          doneRef.current();
-          document.body.dataset.press = 'off';
-          setTimeout(() => setGone(true), 1000);
-        }, 350);
+        setStamped(true);
+        setTimeout(
+          () => {
+            setExiting(true);
+            doneRef.current();
+            document.body.dataset.press = 'off';
+            setTimeout(() => setGone(true), 1000);
+          },
+          reduced ? 200 : 950,
+        );
       }
     };
 
@@ -65,7 +70,14 @@ export default function Preloader({ onDone }: PreloaderProps) {
       className={clsx(styles.press, exiting && styles.exiting)}
       aria-hidden="true"
     >
-      <div className={styles.inner}>
+      <div className={clsx(styles.inner, stamped && styles.shake)}>
+        {stamped ? (
+          <span className={styles.seal}>
+            PASSED
+            <br />
+            FOR PRESS
+          </span>
+        ) : null}
         <p className={styles.extra}>
           <span>★</span> EXTRA! EXTRA! <span>★</span>
         </p>

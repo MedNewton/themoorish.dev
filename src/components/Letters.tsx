@@ -3,6 +3,15 @@ import Reveal from './Reveal';
 import SectionBanner from './SectionBanner';
 import { identity } from '../data/content';
 
+/* 5×5 mini: REACT across, RWA and TS down. '' = blacked-out cell */
+const puzzleRows = [
+  ['', '', 'R', '', ''],
+  ['', '', 'W', '', ''],
+  ['R', 'E', 'A', 'C', 'T'],
+  ['', '', '', '', 'S'],
+  ['', '', '', '', ''],
+];
+
 const directory = [
   {
     label: 'Electronic Mail',
@@ -21,6 +30,7 @@ export default function Letters() {
   return (
     <section id="letters" className={styles.letters}>
       <SectionBanner
+        page="A5"
         section="Section Five · Correspondence"
         title="Letters to the Editor"
         note="The newsroom answers every wire"
@@ -58,6 +68,41 @@ export default function Letters() {
             <br />
             PAID
           </p>
+        </Reveal>
+
+        <Reveal className={styles.puzzle} delay={100}>
+          <h3 className={styles.puzzleTitle}>The Sunday Puzzle</h3>
+          <div className={styles.puzzleInner}>
+            <div className={styles.puzzleGrid} aria-hidden="true">
+              {puzzleRows.flat().map((letter, i) => (
+                <span
+                  key={i}
+                  className={letter ? styles.cellOpen : styles.cellBlack}
+                  style={
+                    letter
+                      ? { transitionDelay: `${(i % 5) * 70 + 50}ms` }
+                      : undefined
+                  }
+                >
+                  {letter}
+                </span>
+              ))}
+            </div>
+            <div className={styles.clues}>
+              <p>
+                <strong>ACROSS</strong> — 3. UI library this very page is
+                typeset with (5)
+              </p>
+              <p>
+                <strong>DOWN</strong> — 1. Wall Street’s favourite three
+                letters, now on-chain (3) · 2. A strongly typed companion, for
+                short (2)
+              </p>
+              <p className={styles.puzzleHint}>
+                Hover over the grid to peek at Sunday’s answers.
+              </p>
+            </div>
+          </div>
         </Reveal>
       </div>
     </section>

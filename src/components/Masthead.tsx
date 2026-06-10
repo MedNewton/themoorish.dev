@@ -13,6 +13,14 @@ function editionDate() {
     .toUpperCase();
 }
 
+function editionName() {
+  const hour = new Date().getHours();
+  if (hour < 6) return 'NIGHT OWL EDITION';
+  if (hour < 12) return 'MORNING EDITION';
+  if (hour < 18) return 'AFTERNOON EDITION';
+  return 'LATE CITY EDITION';
+}
+
 interface MastheadProps {
   ready: boolean;
 }
@@ -39,7 +47,7 @@ export default function Masthead({ ready }: MastheadProps) {
           <span className={styles.vol}>VOL. XXIX … No. 1965</span>
           <span className={styles.date}>{editionDate()}</span>
           <span className={styles.price}>
-            <em className={styles.edition}>LATE CITY EDITION</em> · PRICE: FREE
+            <em className={styles.edition}>{editionName()}</em> · PRICE: FREE
           </span>
         </div>
 

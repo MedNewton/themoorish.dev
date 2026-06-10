@@ -7,6 +7,7 @@ export default function Dispatches() {
   return (
     <section id="dispatches" className={styles.dispatches}>
       <SectionBanner
+        page="A3"
         section="Section Three · The Work"
         title="Latest Dispatches"
         note="Client & team projects; some presses run behind closed doors"

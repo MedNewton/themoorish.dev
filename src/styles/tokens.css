@@ -12,11 +12,16 @@
   --rule-faint: rgba(28, 23, 16, 0.28);
 
   /* ── Type ──────────────────────────────────────────────── */
-  --font-blackletter: 'UnifrakturCook', 'Old English Text MT', serif;
+  --font-blackletter: 'Chomsky', 'Old English Text MT', serif;
   --font-headline: 'Anton', 'Arial Narrow', sans-serif;
   --font-serif: 'Playfair Display', 'Georgia', serif;
+  --font-sc: 'Playfair Display SC', 'Playfair Display', 'Georgia', serif;
   --font-body: 'Old Standard TT', 'Times New Roman', serif;
   --font-type: 'Courier Prime', 'Courier New', monospace;
+
+  /* Ink-misregistration ghosts (CMYK off-press) */
+  --ghost-red: rgba(179, 36, 28, 0.55);
+  --ghost-blue: rgba(30, 58, 110, 0.4);
 
   /* ── Layout ────────────────────────────────────────────── */
   --page-max: 1280px;

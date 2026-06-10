@@ -17,6 +17,12 @@ export default function Footer() {
           © {year} {identity.name}. Reproduction of this fine engineering
           without a friendly email is frowned upon.
         </p>
+        <div className={styles.barcodeBox} aria-hidden="true">
+          <span className={styles.barcode} />
+          <span className={styles.barcodeText}>
+            0 61965 00000 7 · 75¢ BEYOND THE FIREWALL
+          </span>
+        </div>
         <a href="#top" className={styles.top}>
           Return to the Front Page <span aria-hidden="true">↑</span>
         </a>
