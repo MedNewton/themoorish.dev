@@ -1,33 +1,23 @@
 :root {
-  /* ── Paper & ink ───────────────────────────────────────── */
-  --paper: #f2ecdd;
-  --paper-deep: #eae2cd;
-  --paper-shade: #e3d9c0;
-  --ink: #1c1710;
-  --ink-soft: #3a332a;
-  --ink-faint: #6b6353;
-  --red: #b3241c;
-  --red-deep: #8e1b15;
-  --rule: rgba(28, 23, 16, 0.85);
-  --rule-faint: rgba(28, 23, 16, 0.28);
+  /* ── Ink & light (drawn from logoMD.png) ───────────────── */
+  --bg: #0c0d0a;
+  --bg-soft: #121410;
+  --cream: #ecf0e6;
+  --dim: rgba(236, 240, 230, 0.62);
+  --faint: rgba(236, 240, 230, 0.34);
+  --ghost: rgba(236, 240, 230, 0.13);
+  --line: rgba(236, 240, 230, 0.16);
+  --acid: #d9f64d;
 
   /* ── Type ──────────────────────────────────────────────── */
-  --font-blackletter: 'Chomsky', 'Old English Text MT', serif;
-  --font-headline: 'Anton', 'Arial Narrow', sans-serif;
-  --font-serif: 'Playfair Display', 'Georgia', serif;
-  --font-sc: 'Playfair Display SC', 'Playfair Display', 'Georgia', serif;
-  --font-body: 'Old Standard TT', 'Times New Roman', serif;
-  --font-type: 'Courier Prime', 'Courier New', monospace;
-
-  /* Ink-misregistration ghosts (CMYK off-press) */
-  --ghost-red: rgba(179, 36, 28, 0.55);
-  --ghost-blue: rgba(30, 58, 110, 0.4);
+  --font-disp: 'Archivo', 'Arial Black', sans-serif;
+  --font-mono: 'Azeret Mono', ui-monospace, 'SFMono-Regular', monospace;
 
   /* ── Layout ────────────────────────────────────────────── */
-  --page-max: 1280px;
-  --page-pad: clamp(16px, 4vw, 48px);
+  --pad: clamp(18px, 4vw, 56px);
+  --nav-h: 64px;
 
   /* ── Motion ────────────────────────────────────────────── */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-snap: cubic-bezier(0.7, 0, 0.2, 1);
+  --ease-expo: cubic-bezier(0.87, 0, 0.13, 1);
 }

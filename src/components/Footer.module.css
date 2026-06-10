@@ -1,88 +1,63 @@
 .footer {
-  border-top: 1px solid var(--rule);
-  background: var(--paper-shade);
+  overflow: hidden;
+  container-type: inline-size;
+  border-top: 1px solid var(--line);
 }
 
-.inner {
-  max-width: var(--page-max);
-  margin: 0 auto;
-  padding: clamp(24px, 4vw, 40px) var(--page-pad);
+.meta {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.brand {
-  font-family: var(--font-blackletter);
-  font-size: 1.7rem;
-  line-height: 1.2;
-}
-
-.note {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: 12.5px;
-  color: var(--ink-faint);
-}
-
-.legal {
-  font-family: var(--font-type);
-  font-size: 11.5px;
-  letter-spacing: 0.04em;
-  color: var(--ink-soft);
-  max-width: 44ch;
-}
-
-.barcodeBox {
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 5px;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: clamp(20px, 3vw, 32px) var(--pad);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--dim);
 }
 
-.barcode {
-  width: 110px;
-  height: 30px;
-  background: repeating-linear-gradient(
-    to right,
-    var(--ink) 0 2px,
-    transparent 2px 4px,
-    var(--ink) 4px 7px,
-    transparent 7px 9px,
-    var(--ink) 9px 10px,
-    transparent 10px 13px
-  );
-}
-
-.barcodeText {
-  font-family: var(--font-type);
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  color: var(--ink-soft);
+.colophon {
+  color: var(--faint);
 }
 
 .top {
-  font-family: var(--font-headline);
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  border: 2px solid var(--ink);
-  padding: 9px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 20px;
+  color: var(--dim);
   transition:
-    background 0.25s ease,
-    color 0.25s ease;
+    color 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
 }
 
 .top:hover,
 .top:focus-visible {
-  background: var(--ink);
-  color: var(--paper);
+  background: var(--acid);
+  border-color: var(--acid);
+  color: var(--bg);
+}
+
+/* ── The mark, cropped by the fold — exactly like the logo ── */
+.mark {
+  font-weight: 900;
+  font-stretch: 125%;
+  font-size: clamp(11rem, 47vw, 46rem);
+  /* Locks the mark flush edge-to-edge, exactly like logoMD.png */
+  font-size: 48.2cqw;
+  line-height: 0.72;
+  letter-spacing: -0.02em;
+  text-align: center;
+  margin-bottom: -0.18em;
+  color: var(--cream);
+  user-select: none;
 }
 
 @media (max-width: 720px) {
-  .inner {
+  .meta {
     flex-direction: column;
     text-align: center;
   }
