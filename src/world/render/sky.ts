@@ -101,6 +101,22 @@ export function drawStars(
     ctx.fillStyle = `rgba(232,236,255,${a.toFixed(3)})`;
     ctx.fillRect(sx, sy, s.size, s.size);
   }
+
+  // a shooting star every now and then
+  const PERIOD = 8;
+  const cycle = Math.floor(time / PERIOD);
+  const ft = time - cycle * PERIOD;
+  if (ft < 0.8 && hash(cycle) > 0.35) {
+    const x0 = hash(cycle * 7) * w * 0.8 + w * 0.15;
+    const y0 = hash(cycle * 13) * horizonY * 0.45 + 4;
+    const px = Math.round(x0 - ft * 110);
+    const py = Math.round(y0 + ft * 42);
+    const fade = visibility * (1 - ft / 0.8);
+    for (let i = 0; i < 7; i++) {
+      ctx.fillStyle = `rgba(255,244,214,${(fade * (1 - i / 7)).toFixed(3)})`;
+      ctx.fillRect(px + i * 2, py - i, i === 0 ? 2 : 1, 1);
+    }
+  }
 }
 
 /** Crescent moon that sets as the journey ends; sun rises at the gate. */

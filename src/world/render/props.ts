@@ -181,6 +181,23 @@ function pool(width: number): Draw {
   };
 }
 
+function fireflies(seed: number, spread: number): Draw {
+  return (ctx, sx, sy, t, progress) => {
+    const vis = 1 - smoothstep(0.7, 0.9, progress);
+    if (vis < 0.05) return;
+    for (let i = 0; i < 7; i++) {
+      const fx = sx + Math.round(hash(seed + i) * spread + Math.sin(t * 0.5 + i * 2.1) * 9);
+      const fy = sy - 6 - Math.round(hash(seed + i * 3) * 16 + Math.sin(t * 0.9 + i * 1.3) * 5);
+      const pulse = 0.5 + 0.5 * Math.sin(t * 2.4 + i * 2.7);
+      const a = vis * pulse * 0.9;
+      if (a < 0.1) continue;
+      ctx.fillStyle = i % 3 === 0 ? `rgba(77,255,210,${a.toFixed(3)})` : `rgba(255,224,130,${a.toFixed(3)})`;
+      ctx.fillRect(fx, fy, 1, 1);
+      if (pulse > 0.75) drawGlow(ctx, fx, fy, 3, i % 3 === 0 ? '#4dffd2' : '#ffe082', a * 0.5);
+    }
+  };
+}
+
 function stall(variant: number): Draw {
   const w = 22;
   const stripe = variant % 2 === 0 ? '#3ec6a8' : '#c2502f';
@@ -483,10 +500,10 @@ function birds(seed: number): Draw {
 const Z = (zone: number, off: number) => zone * ZONE_LEN + off;
 
 export const NEAR_PROPS: Prop[] = [
-  // CH.01 — desert of origins
-  { x: Z(0, 120), draw: palm(1), cull: 24 },
-  { x: Z(0, 350), draw: tent(1), cull: 24 },
-  { x: Z(0, 410), draw: campfire(), cull: 30 },
+  // CH.01 — desert of origins (campfire near the traveler's start)
+  { x: Z(0, 90), draw: palm(1), cull: 24 },
+  { x: Z(0, 215), draw: campfire(), cull: 30 },
+  { x: Z(0, 330), draw: tent(1), cull: 24 },
   { x: Z(0, 520), draw: palm(2), cull: 24 },
   { x: Z(0, 660), draw: rock(2), cull: 12 },
 
@@ -502,6 +519,7 @@ export const NEAR_PROPS: Prop[] = [
   // CH.03 — oasis bazaar
   { x: Z(2, 60), draw: palm(5), cull: 24 },
   { x: Z(2, 110), draw: pool(90), cull: 100 },
+  { x: Z(2, 105), draw: fireflies(3, 100), cull: 110 },
   { x: Z(2, 230), draw: palm(6), cull: 24 },
   { x: Z(2, 260), draw: palm(7), cull: 24 },
   { x: Z(2, 380), draw: lanternString(150), cull: 160 },

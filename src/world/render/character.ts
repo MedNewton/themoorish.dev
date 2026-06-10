@@ -160,3 +160,72 @@ export function drawTraveler(
   // hand on staff
   px(4, handY, 2, 2, SKIN);
 }
+
+const CAMEL = '#8a6444';
+const CAMEL_D = '#6b4c34';
+const CAMEL_L = '#a37c52';
+
+/**
+ * The traveler's camel companion — trails a few steps behind, walks the
+ * same stride at a lazy phase offset, and chews while waiting.
+ */
+export function drawCamel(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  footY: number,
+  s: TravelerState,
+) {
+  const f = s.facing;
+  const walking = s.speed > 0.06;
+  const phase = s.stride * 0.18 + 0.9; // off-beat from the traveler
+  const t = s.time;
+  const bob = walking ? (Math.abs(Math.sin(phase)) > 0.6 ? 0 : 1) : 0;
+  const breathe = !walking && Math.floor(t * 0.9) % 2 === 0 ? 1 : 0;
+
+  const px = (dx: number, dy: number, w: number, h: number, c: string) => {
+    ctx.fillStyle = c;
+    ctx.fillRect(Math.round(x + dx * f - (f === -1 ? w - 1 : 0)), Math.round(footY + dy), w, h);
+  };
+
+  /* legs: front and back pairs alternate */
+  const legTop = -9 - bob;
+  if (walking) {
+    const aDx = Math.round(Math.sin(phase) * 2);
+    const bDx = Math.round(Math.sin(phase + Math.PI) * 2);
+    const aLift = Math.max(0, Math.round(Math.cos(phase) * 2));
+    const bLift = Math.max(0, Math.round(Math.cos(phase + Math.PI) * 2));
+    px(-9 + aDx, legTop, 2, 9 + bob - aLift, CAMEL_D);
+    px(-5 + bDx, legTop, 2, 9 + bob - bLift, CAMEL_D);
+    px(3 + bDx, legTop, 2, 9 + bob - bLift, CAMEL_D);
+    px(7 + aDx, legTop, 2, 9 + bob - aLift, CAMEL_D);
+  } else {
+    px(-9, legTop, 2, 9, CAMEL_D);
+    px(-5, legTop, 2, 9, CAMEL_D);
+    px(3, legTop, 2, 9, CAMEL_D);
+    px(7, legTop, 2, 9, CAMEL_D);
+  }
+
+  /* body + hump */
+  const bodyY = -15 - bob;
+  px(-11, bodyY, 21, 7, CAMEL);
+  px(-11, bodyY, 21, 2, CAMEL_L);
+  px(-3, bodyY - 3 - breathe, 8, 3 + breathe, CAMEL);
+  px(-2, bodyY - 4 - breathe, 6, 1, CAMEL_L);
+  // tail, swishes now and then
+  const swish = Math.floor(t * 0.8) % 3 === 0 ? 1 : 0;
+  px(-12, bodyY + 2, 1, 4 + swish, CAMEL_D);
+
+  /* neck + head — chews when idle */
+  const chew = !walking && Math.floor(t * 2.2) % 2 === 0 ? 1 : 0;
+  px(8, bodyY - 5, 3, 7, CAMEL);
+  px(9, bodyY - 8 + chew, 5, 4, CAMEL);
+  px(13, bodyY - 7 + chew, 2, 2, CAMEL_D); // muzzle
+  px(10, bodyY - 9 + chew, 1, 1, CAMEL_D); // ear
+  px(11, bodyY - 7 + chew, 1, 1, OUT); // eye
+
+  /* saddle blanket + cargo */
+  px(-6, bodyY - 2, 9, 3, '#a8453a');
+  px(-6, bodyY + 1, 9, 1, SASH);
+  px(-5, bodyY - 4, 3, 2, '#4a3258'); // strapped pack
+  px(1, bodyY - 4, 2, 2, '#ffd073');
+}

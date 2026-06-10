@@ -1,7 +1,7 @@
 import { drawSky, drawStars, drawCelestials, dawnTint } from './sky';
 import { drawFarLayer, drawMidLayer, drawGround, groundHeight } from './terrain';
 import { drawNearProps, drawMidProps } from './props';
-import { drawTraveler, drawDust, spawnDust } from './character';
+import { drawTraveler, drawCamel, drawDust, spawnDust } from './character';
 import type { TravelerState } from './character';
 import { TRAVELER_SCREEN_X } from '../journey';
 
@@ -31,8 +31,11 @@ export function renderWorld(ctx: CanvasRenderingContext2D, f: FrameInput) {
   drawGround(ctx, w, h, groundY, camX, progress);
   drawNearProps(ctx, w, groundY, camX, time, progress);
 
-  // traveler stands a third into the screen
+  // traveler stands a third into the screen, camel trailing behind
   const tx = Math.round(w * TRAVELER_SCREEN_X);
+  const cx = tx - 30 * f.traveler.facing;
+  const camelFootY = Math.floor(groundY - groundHeight(camX + cx) + 1);
+  drawCamel(ctx, cx, camelFootY, f.traveler);
   const footY = Math.floor(groundY - groundHeight(camX + tx) + 1);
   drawTraveler(ctx, tx, footY, f.traveler);
 
