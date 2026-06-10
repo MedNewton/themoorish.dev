@@ -34,5 +34,3 @@ lerna-debug.log*
 # vercel
 .vercel
 
-# md files
-*.md
