@@ -71,8 +71,8 @@ export default function FrontPage({ ready }: FrontPageProps) {
           </p>
           <div className={styles.columns}>
             <p>
-              <span className={styles.dropcap}>T</span>
-              UNIS, {dateline()} — A full-stack developer has been observed
+              <span className={styles.dropcap}>C</span>
+              ASABLANCA, {dateline()} — A full-stack developer has been observed
               building modern TypeScript and React applications, Web3 dApps and
               agentic A.I. systems at a pace described by witnesses as
               “relentless.” The engineer, who answers to{' '}
