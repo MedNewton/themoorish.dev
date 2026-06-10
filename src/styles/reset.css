@@ -21,9 +21,9 @@ html {
 }
 
 body {
-  font-family: var(--font-display);
-  background: var(--color-bg);
-  color: var(--color-text);
+  font-family: var(--font-body);
+  background: var(--desk);
+  color: var(--ink);
   overflow-x: hidden;
 }
 

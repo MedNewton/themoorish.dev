@@ -1,0 +1,123 @@
+.section {
+  padding: clamp(26px, 4vw, 52px) 0;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 3px solid var(--ink);
+  padding-bottom: 10px;
+  margin-bottom: clamp(16px, 2.4vw, 28px);
+}
+
+.title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(22px, 3.4vw, 38px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.standfirst {
+  font-style: italic;
+  font-size: clamp(12px, 1.4vw, 15px);
+  color: var(--ink-soft);
+  text-align: right;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 2vw, 22px);
+}
+
+.ad {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  border: 3px double var(--ink);
+  outline: var(--rule);
+  outline-offset: -8px;
+  padding: clamp(18px, 2.4vw, 26px);
+  text-align: center;
+  transition:
+    background 0.35s ease,
+    color 0.35s ease,
+    transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.ad:hover {
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-4px);
+}
+
+.ad:hover .adHeading {
+  color: var(--paper);
+  border-color: rgba(242, 233, 216, 0.4);
+}
+
+.ad:hover .adBody {
+  color: rgba(242, 233, 216, 0.8);
+}
+
+.ad:hover .adCta {
+  color: #e0796d;
+}
+
+.adHeading {
+  font-family: var(--font-sans);
+  font-size: clamp(14px, 1.6vw, 18px);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  border-bottom: var(--rule-soft);
+  padding-bottom: 10px;
+  transition:
+    color 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.adBody {
+  font-size: clamp(13px, 1.4vw, 14.5px);
+  line-height: 1.6;
+  color: var(--ink-soft);
+  transition: color 0.35s ease;
+}
+
+.adCta {
+  margin-top: auto;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  transition: color 0.35s ease;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .standfirst {
+    text-align: left;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

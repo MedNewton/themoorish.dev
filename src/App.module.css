@@ -1,4 +1,21 @@
-.page {
+.desk {
   min-height: 100dvh;
-  background: var(--color-bg);
+  background: var(--desk);
+  padding: clamp(0px, 2vw, 36px) clamp(0px, 2vw, 28px);
+}
+
+/* The broadsheet itself, laid on the press desk */
+.sheet {
+  max-width: var(--sheet-max);
+  margin-inline: auto;
+  background:
+    linear-gradient(165deg, rgba(255, 255, 255, 0.35), transparent 40%),
+    var(--paper);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.45),
+    0 12px 40px rgba(0, 0, 0, 0.55);
+}
+
+.page {
+  padding: 0 var(--sheet-pad) 8px;
 }

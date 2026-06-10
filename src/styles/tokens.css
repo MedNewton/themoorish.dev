@@ -1,11 +1,23 @@
 :root {
-  --color-bg: #000000;
-  --color-text: #ecf0e6;
+  /* The Moorish Times — 1960s broadsheet palette */
+  --desk: #16120c;
+  --paper: #f2e9d8;
+  --paper-deep: #e8dcc4;
+  --ink: #1c1710;
+  --ink-soft: #57503f;
+  --ink-faint: rgba(28, 23, 16, 0.38);
+  --accent: #a8281c; /* spot-ink red */
+  --accent-deep: #7c1c12;
 
-  --font-display: 'BBH Bartle', 'Arial Black', sans-serif;
-  --font-body: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-  --font-mono: 'Azeret Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-masthead: 'UnifrakturCook', 'Old English Text MT', serif;
+  --font-headline: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Oswald', 'Arial Narrow', sans-serif;
+  --font-body: 'Old Standard TT', Georgia, 'Times New Roman', serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-  --frame-inset: 16px;
-  --frame-border: 3px;
+  --rule: 1px solid var(--ink);
+  --rule-soft: 1px solid var(--ink-faint);
+
+  --sheet-max: 1280px;
+  --sheet-pad: clamp(16px, 4vw, 56px);
 }

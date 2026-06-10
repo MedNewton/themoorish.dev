@@ -1,0 +1,219 @@
+.front {
+  padding: clamp(22px, 3.5vw, 44px) 0 clamp(28px, 4vw, 56px);
+  border-bottom: 4px double var(--ink);
+}
+
+.kicker {
+  font-family: var(--font-sans);
+  font-size: clamp(11px, 1.3vw, 14px);
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: clamp(10px, 1.6vw, 18px);
+}
+
+.kicker::before,
+.kicker::after {
+  content: '—';
+  margin: 0 12px;
+  color: var(--ink-faint);
+}
+
+.headline {
+  font-family: var(--font-headline);
+  font-weight: 900;
+  font-size: clamp(30px, 5.6vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  text-align: center;
+  text-wrap: balance;
+  margin: 0 auto clamp(12px, 2vw, 22px);
+  max-width: 22ch;
+}
+
+.dek {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: clamp(15px, 1.9vw, 21px);
+  line-height: 1.5;
+  text-align: center;
+  text-wrap: balance;
+  color: var(--ink-soft);
+  max-width: 64ch;
+  margin: 0 auto clamp(24px, 3.4vw, 44px);
+}
+
+.spread {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 3fr);
+  gap: clamp(24px, 3.4vw, 48px);
+  align-items: start;
+  border-top: var(--rule);
+  padding-top: clamp(18px, 2.6vw, 30px);
+}
+
+.byline {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+
+.bylineName {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.dateline {
+  color: var(--accent);
+}
+
+.story {
+  column-count: 2;
+  column-gap: clamp(22px, 3vw, 36px);
+  column-rule: var(--rule-soft);
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.62;
+  text-align: justify;
+  hyphens: auto;
+}
+
+.story .byline {
+  column-span: all;
+}
+
+.lede::first-letter {
+  font-family: var(--font-headline);
+  font-weight: 900;
+  font-size: 3.9em;
+  line-height: 0.78;
+  float: left;
+  padding: 6px 10px 0 0;
+  color: var(--accent);
+}
+
+.graf {
+  margin-top: 1em;
+  text-indent: 1.6em;
+}
+
+.continued {
+  margin-top: 1.4em;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  break-inside: avoid;
+}
+
+.rail {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(18px, 2.4vw, 28px);
+}
+
+.photoBox {
+  border: var(--rule);
+  padding: 8px;
+  background: var(--paper-deep);
+}
+
+.photo {
+  position: relative;
+  overflow: hidden;
+}
+
+.photo img {
+  width: 100%;
+  filter: grayscale(1) contrast(1.18) brightness(1.04) sepia(0.3);
+  transition: filter 0.6s ease;
+}
+
+/* Halftone screen over the portrait */
+.photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle,
+    rgba(28, 23, 16, 0.5) 1px,
+    transparent 1.4px
+  );
+  background-size: 4px 4px;
+  mix-blend-mode: overlay;
+}
+
+.photoBox:hover .photo img {
+  filter: grayscale(0.35) contrast(1.06) sepia(0.12);
+}
+
+.caption {
+  padding: 9px 4px 2px;
+  font-size: 12.5px;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.pullQuote {
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+  padding: clamp(14px, 2vw, 22px) 6px;
+  text-align: center;
+}
+
+.pullQuote p {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  font-style: italic;
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.pullQuote cite {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--font-sans);
+  font-style: normal;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 900px) {
+  .spread {
+    grid-template-columns: 1fr;
+  }
+
+  .story {
+    column-count: 1;
+  }
+
+  .rail {
+    flex-direction: row;
+    align-items: start;
+  }
+
+  .photoBox,
+  .pullQuote {
+    flex: 1 1 50%;
+  }
+}
+
+@media (max-width: 640px) {
+  .rail {
+    flex-direction: column;
+  }
+}
