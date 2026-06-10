@@ -1,0 +1,118 @@
+.section {
+  padding: clamp(64px, 11vw, 170px) var(--pad) clamp(40px, 6vw, 90px);
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.title {
+  font-weight: 300;
+  font-style: italic;
+  font-stretch: 96%;
+  font-size: clamp(1.6rem, 3.4vw, 3rem);
+  color: var(--dim);
+  margin-bottom: clamp(20px, 3vw, 36px);
+}
+
+/* ── The email, set like a headline ───────────────────────── */
+.email {
+  position: relative;
+  display: block;
+  width: 100%;
+  container-type: inline-size;
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  color: var(--cream);
+  cursor: pointer;
+}
+
+/* Both lines lock flush to the container (sizes from measured widths) */
+.emailLine {
+  display: block;
+  font-family: var(--font-disp);
+  font-weight: 900;
+  font-stretch: 112%;
+  font-size: clamp(2.1rem, 6.4vw, 6.6rem);
+  font-size: 7.38cqw;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  transition:
+    font-stretch 0.55s var(--ease-out),
+    color 0.3s ease;
+}
+
+.emailTail {
+  font-size: clamp(2.4rem, 10.8vw, 11rem);
+  font-size: 12.3cqw;
+}
+
+.emailTail {
+  color: transparent;
+  -webkit-text-stroke: clamp(1px, 0.14vw, 2px) var(--cream);
+}
+
+.email:hover .emailLine,
+.email:focus-visible .emailLine {
+  font-stretch: 125%;
+  color: var(--acid);
+}
+
+.email:hover .emailTail,
+.email:focus-visible .emailTail {
+  -webkit-text-stroke-color: var(--acid);
+  color: transparent;
+}
+
+.copyTip {
+  position: absolute;
+  top: -1.9em;
+  right: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--faint);
+  transition: color 0.25s ease;
+}
+
+.copiedTip {
+  color: var(--acid);
+}
+
+/* ── Social row ───────────────────────────────────────────── */
+.links {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: clamp(28px, 4vw, 52px);
+}
+
+.links a {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dim);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 12px 24px;
+  transition:
+    color 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s var(--ease-out);
+}
+
+.links a:hover,
+.links a:focus-visible {
+  color: var(--bg);
+  background: var(--cream);
+  border-color: var(--cream);
+  transform: translateY(-2px);
+}

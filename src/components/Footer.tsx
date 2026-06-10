@@ -1,32 +1,25 @@
 import styles from './Footer.module.css';
+import KineticLine from './KineticLine';
 import { identity } from '../data/content';
 
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
     <footer className={styles.footer}>
-      <div className={styles.inner}>
-        <div className={styles.colophon}>
-          <p className={styles.brand}>The Moorish Times</p>
-          <p className={styles.note}>
-            Published whenever something ships · {identity.site} · Printed on
-            100% recycled pixels
-          </p>
-        </div>
-        <p className={styles.legal}>
-          © {year} {identity.name}. Reproduction of this fine engineering
-          without a friendly email is frowned upon.
+      <div className={styles.meta}>
+        <p>
+          © {year} {identity.name}
         </p>
-        <div className={styles.barcodeBox} aria-hidden="true">
-          <span className={styles.barcode} />
-          <span className={styles.barcodeText}>
-            0 61965 00000 7 · 75¢ BEYOND THE FIREWALL
-          </span>
-        </div>
+        <p className={styles.colophon}>
+          Set in Archivo & Azeret Mono — {identity.site}
+        </p>
         <a href="#top" className={styles.top}>
-          Return to the Front Page <span aria-hidden="true">↑</span>
+          Back to top <span aria-hidden="true">↑</span>
         </a>
       </div>
+      <p className={styles.mark}>
+        <KineticLine text="MD" />
+      </p>
     </footer>
   );
 }

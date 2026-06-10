@@ -1,0 +1,28 @@
+.section {
+  padding: clamp(64px, 11vw, 160px) var(--pad);
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.body {
+  font-size: clamp(1.5rem, 3.6vw, 3.3rem);
+  font-weight: 300;
+  font-stretch: 102%;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  text-indent: clamp(3ch, 12vw, 12ch);
+  max-width: 26ch;
+}
+
+.body span {
+  color: var(--ghost);
+  font-weight: 300;
+  transition:
+    color 0.45s ease,
+    font-weight 0.45s ease;
+}
+
+.body span.lit {
+  color: var(--cream);
+  font-weight: 560;
+}

@@ -2,12 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 import styles from './Preloader.module.css';
 
-const STAGES = [
-  'SETTING TYPE…',
-  'INKING THE PLATES…',
-  'ROLLING THE PRESSES…',
-  'HOT OFF THE PRESS!',
-];
+const WORDS = ['FULL—STACK', 'WEB3', 'A.I. AGENTS', 'MD®'];
 
 interface PreloaderProps {
   onDone: () => void;
@@ -15,8 +10,7 @@ interface PreloaderProps {
 
 export default function Preloader({ onDone }: PreloaderProps) {
   const [progress, setProgress] = useState(0);
-  const [stamped, setStamped] = useState(false);
-  const [exiting, setExiting] = useState(false);
+  const [splitting, setSplitting] = useState(false);
   const [gone, setGone] = useState(false);
   const doneRef = useRef(onDone);
   doneRef.current = onDone;
@@ -27,7 +21,7 @@ export default function Preloader({ onDone }: PreloaderProps) {
     const reduced = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     ).matches;
-    const duration = reduced ? 250 : 2300;
+    const duration = reduced ? 200 : 2100;
     const start = performance.now();
     let raf = 0;
 
@@ -38,16 +32,10 @@ export default function Preloader({ onDone }: PreloaderProps) {
       if (t < 1) {
         raf = requestAnimationFrame(tick);
       } else {
-        setStamped(true);
-        setTimeout(
-          () => {
-            setExiting(true);
-            doneRef.current();
-            document.body.dataset.press = 'off';
-            setTimeout(() => setGone(true), 1000);
-          },
-          reduced ? 200 : 950,
-        );
+        setSplitting(true);
+        doneRef.current();
+        document.body.dataset.press = 'off';
+        setTimeout(() => setGone(true), reduced ? 250 : 1200);
       }
     };
 
@@ -60,39 +48,22 @@ export default function Preloader({ onDone }: PreloaderProps) {
 
   if (gone) return null;
 
-  const stage =
-    STAGES[
-      Math.min(STAGES.length - 1, Math.floor((progress / 100) * STAGES.length))
+  const word =
+    WORDS[
+      Math.min(WORDS.length - 1, Math.floor((progress / 100) * WORDS.length))
     ];
 
   return (
     <div
-      className={clsx(styles.press, exiting && styles.exiting)}
+      className={clsx(styles.loader, splitting && styles.splitting)}
       aria-hidden="true"
     >
-      <div className={clsx(styles.inner, stamped && styles.shake)}>
-        {stamped ? (
-          <span className={styles.seal}>
-            PASSED
-            <br />
-            FOR PRESS
-          </span>
-        ) : null}
-        <p className={styles.extra}>
-          <span>★</span> EXTRA! EXTRA! <span>★</span>
-        </p>
-        <p className={styles.masthead}>The Moorish Times</p>
-        <p className={styles.stage}>{stage}</p>
-        <div className={styles.barTrack}>
-          <div className={styles.barInk} style={{ width: `${progress}%` }} />
-        </div>
-        <p className={styles.count}>
-          {String(progress).padStart(3, '0')}
-          <span> / 100</span>
-        </p>
-      </div>
-      <div className={styles.curtainTop} />
-      <div className={styles.curtainBottom} />
+      <p className={styles.mark}>
+        <span className={styles.m}>M</span>
+        <span className={styles.d}>D</span>
+      </p>
+      <p className={styles.word}>{word}</p>
+      <p className={styles.count}>{String(progress).padStart(3, '0')}</p>
     </div>
   );
 }

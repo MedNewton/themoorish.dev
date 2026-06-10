@@ -1,0 +1,25 @@
+.track {
+  overflow: hidden;
+  padding: clamp(20px, 4vw, 60px) 0;
+}
+
+.mark {
+  font-weight: 900;
+  font-stretch: 125%;
+  font-size: clamp(10rem, 38vw, 34rem);
+  line-height: 0.78;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  width: max-content;
+  color: transparent;
+  -webkit-text-stroke: clamp(1.2px, 0.18vw, 2.6px) var(--faint);
+  will-change: transform;
+  user-select: none;
+}
+
+.reg {
+  font-size: 0.18em;
+  font-stretch: 100%;
+  vertical-align: 3.4em;
+  -webkit-text-stroke-width: 1px;
+}

@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import Preloader from './components/Preloader';
-import ProgressRule from './components/ProgressRule';
-import StickyNav from './components/StickyNav';
-import Masthead from './components/Masthead';
-import Ticker from './components/Ticker';
-import FrontPage from './components/FrontPage';
-import TradePages from './components/TradePages';
-import Dispatches from './components/Dispatches';
-import SpecialReport from './components/SpecialReport';
-import Letters from './components/Letters';
+import Nav from './components/Nav';
+import Hero from './components/Hero';
+import Marquee from './components/Marquee';
+import Manifesto from './components/Manifesto';
+import Stack from './components/Stack';
+import DriveBy from './components/DriveBy';
+import Machines from './components/Machines';
+import Work from './components/Work';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 export default function App() {
@@ -17,19 +17,19 @@ export default function App() {
   return (
     <>
       <Preloader onDone={() => setReady(true)} />
-      <a className="skip-link" href="#front-page">
+      <a className="skip-link" href="#manifesto">
         Skip to content
       </a>
-      <StickyNav />
-      <ProgressRule />
-      <Masthead ready={ready} />
-      <Ticker />
+      <Nav ready={ready} />
       <main>
-        <FrontPage ready={ready} />
-        <TradePages />
-        <Dispatches />
-        <SpecialReport />
-        <Letters />
+        <Hero ready={ready} />
+        <Marquee />
+        <Manifesto />
+        <Stack />
+        <DriveBy />
+        <Machines />
+        <Work />
+        <Contact />
       </main>
       <Footer />
       <div className="grain" aria-hidden="true" />

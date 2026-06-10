@@ -1,0 +1,33 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: clamp(28px, 4vw, 52px);
+}
+
+.pill {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--bg);
+  background: var(--acid);
+  border-radius: 999px;
+  padding: 5px 12px;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--dim);
+  white-space: nowrap;
+}
+
+.rule {
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}

@@ -5,36 +5,37 @@ export const identity = {
   linkedin: 'https://www.linkedin.com/in/mohamed-ben-moussa-b60ab498/',
   github: 'https://github.com/MedNewton',
   site: 'themoorish.dev',
+  location: 'Morocco',
 };
 
-export const tickerItems = [
-  'ENGINEER SHIPS FULL-STACK, WEB3 & A.I. PRODUCTS',
-  '11 SMART CONTRACTS DEPLOYED ON SEPOLIA',
-  'MCP SERVERS NOW SPEAKING FLUENTLY TO LLMS',
-  'DEFI INDICES GO LIVE — CLIENTS REJOICE',
-  'TOKENIZED REAL ESTATE OPEN TO THE PUBLIC',
-  '50-SCREEN MOBILE APP HITS THE STREETS',
-  'BUSINESS PLANS NOW WRITTEN BY MACHINES',
-  'CLEAN ARCHITECTURE DECLARED NON-NEGOTIABLE',
+export const marqueeItems = [
+  'DEFI',
+  'RWA TOKENIZATION',
+  'A.I. AGENTS',
+  'MCP SERVERS',
+  'DAPPS',
+  'SMART CONTRACTS',
+  'MARKETPLACES',
+  'MOBILE',
+  'SAAS',
+  'CLEAN ARCHITECTURE',
 ];
 
-export interface StackAd {
-  title: string;
-  note: string;
+export const manifesto =
+  'I build modern TypeScript and React applications, Web3 dApps and agentic A.I. systems — products around DeFi, tokenized real-world assets, marketplaces and CRMs — comfortable across frontend, backend, smart contracts and integrations, obsessed with clean architecture, good DX and friction-free UX.';
+
+export interface StackRow {
+  label: string;
   items: string[];
-  flair?: string;
 }
 
-export const stackAds: StackAd[] = [
+export const stackRows: StackRow[] = [
   {
-    title: 'Languages',
-    note: 'Spoken daily, no accent',
-    items: ['TypeScript', 'JavaScript', 'Python', 'PHP', 'Rust (foundational)'],
-    flair: 'FLUENT!',
+    label: 'Languages',
+    items: ['TypeScript', 'JavaScript', 'Python', 'PHP', 'Rust'],
   },
   {
-    title: 'Frontend',
-    note: 'Interfaces, hand-set',
+    label: 'Frontend',
     items: [
       'React',
       'Next.js',
@@ -44,172 +45,157 @@ export const stackAds: StackAd[] = [
       'Radix UI',
       'shadcn/ui',
       'Tailwind CSS',
-      'HTML5',
-      'CSS3',
     ],
   },
   {
-    title: 'Mobile',
-    note: 'Pocket editions available',
+    label: 'Mobile',
     items: ['React Native', 'Expo', 'NativeWind'],
   },
   {
-    title: 'Backend & APIs',
-    note: 'The engine room',
-    items: ['Node.js', 'Express.js', 'REST', 'Stripe', 'Clerk', 'Resend'],
+    label: 'Backend',
+    items: ['Node.js', 'Express', 'REST', 'Stripe', 'Clerk', 'Resend'],
   },
   {
-    title: 'Web3 & Blockchain',
-    note: 'On-chain since the early days',
-    items: ['Thirdweb', 'ethers.js', 'Viem', 'Alchemy', 'Ethereum', 'Solidity'],
-    flair: 'ON-CHAIN!',
+    label: 'Web3',
+    items: ['Solidity', 'Thirdweb', 'ethers.js', 'Viem', 'Alchemy', 'Ethereum'],
   },
   {
-    title: 'Data & Storage',
-    note: 'Filed and indexed',
-    items: ['PostgreSQL', 'Supabase', 'Firebase'],
+    label: 'Data',
+    items: ['PostgreSQL', 'Supabase', 'Firebase', 'pgvector'],
   },
   {
-    title: 'A.I. & Agents',
-    note: 'The thinking machines desk',
-    items: [
-      'OpenAI',
-      'Vercel AI SDK',
-      'LiveKit',
-      'MCP servers & clients',
-      'RAG pipelines',
-    ],
-    flair: 'NEW!',
-  },
-  {
-    title: 'Tools & Workflow',
-    note: 'The print room',
-    items: ['Git', 'GitHub', 'Vercel', 'Notion', 'Trello', 'Slack', 'Discord'],
+    label: 'A.I.',
+    items: ['OpenAI', 'Vercel AI SDK', 'LiveKit', 'MCP', 'RAG'],
   },
 ];
 
-export interface Dispatch {
-  no: number;
-  kicker: string;
-  headline: string;
-  dek: string;
+export interface Work {
+  index: string;
+  title: string;
+  tag: string;
+  description: string;
+  tech: string;
   link?: string;
-  linkLabel?: string;
 }
 
-export const leadDispatch: Dispatch = {
-  no: 1,
-  kicker: 'The Lead Story · Web3',
-  headline: 'Eleven Smart Contracts, One Ecosystem: Urano dApp Ships in Full',
-  dek: 'A complete tokenized-RWA platform on Ethereum Sepolia — ERC-20 token with staking and veToken governance, a uShare fractional real-world-asset marketplace, KYC/AML via Persona, vesting, presale, and a built-in A.I. assistant. Set in React, Vite, Thirdweb SDK, Viem, TanStack Query and Tailwind CSS, with Vercel serverless and Supabase running the back office.',
-};
-
-export const dispatches: Dispatch[] = [
+export const works: Work[] = [
   {
-    no: 2,
-    kicker: 'Finance',
-    headline: 'Index Funds Go On-Chain as NexLabs Rethinks Asset Management',
-    dek: 'Frontend and dApp work in Next.js, TypeScript, MUI and Web3 — index-based investing UX, embedded wallets and on-chain analytics.',
+    index: '01',
+    title: 'Urano dApp',
+    tag: 'Web3 / RWA',
+    description:
+      'Complete tokenized-RWA ecosystem on Ethereum Sepolia: 11 smart contracts — ERC-20 with staking and veToken governance, uShare fractional RWA marketplace, KYC/AML via Persona, vesting, presale and a built-in A.I. assistant.',
+    tech: 'React · Vite · Thirdweb · Viem · TanStack Query · Tailwind · Supabase',
+  },
+  {
+    index: '02',
+    title: 'NexLabs',
+    tag: 'DeFi',
+    description:
+      'Frontend and dApp work for on-chain index investing — embedded wallets, index UX and on-chain analytics.',
+    tech: 'Next.js · TypeScript · MUI · Web3',
     link: 'https://www.nexlabs.io/',
   },
   {
-    no: 3,
-    kicker: 'Real Estate',
-    headline: 'SuperPrime Property, Now Sold by the Token',
-    dek: 'Public site and dApp UI for Modus — global investors reach institutional real estate via stablecoins and card payments.',
+    index: '03',
+    title: 'Modus dApp',
+    tag: 'Real Estate',
+    description:
+      'Public site and dApp UI for tokenized SuperPrime real estate — global investors via stablecoins and card payments.',
+    tech: 'Next.js · TypeScript · Web3',
     link: 'https://www.modusdapp.org/',
   },
   {
-    no: 4,
-    kicker: 'Markets',
-    headline: '$URANO Presale Opens; Queues Form Around the Block(chain)',
-    dek: 'Presale flows for tokenized RWAs: KYC, wallet connection, purchase UX and the post-TGE token claim experience.',
+    index: '04',
+    title: 'Urano Presale',
+    tag: 'Markets',
+    description:
+      'Presale flows for the $URANO token: KYC, wallet connection, purchase UX and post-TGE claim experience.',
+    tech: 'React · Web3 · KYC',
     link: 'https://www.presale.uranoecosystem.com/',
   },
   {
-    no: 5,
-    kicker: 'Events',
-    headline: 'A.I., Web3 & Quantum Summit Descends Upon Naples',
-    dek: 'Art-directed conference site for ctrl/shift 2026 — dynamic hero, agenda, tracks, partners and application flows.',
+    index: '05',
+    title: 'ctrl/shift 2026',
+    tag: 'Events',
+    description:
+      'Art-directed site for an A.I., Web3 & Quantum summit in Naples — dynamic hero, agenda, tracks, partners, applications.',
+    tech: 'Next.js · TypeScript',
     link: 'https://www.ctrlshift.events/',
   },
   {
-    no: 6,
-    kicker: 'Archives',
-    headline:
-      'Southern Italy’s Biggest Web3 Gathering, Preserved for Posterity',
-    dek: 'Archive and landing pages for NapulETH 2025, aligned with the brand and its community.',
+    index: '06',
+    title: 'NapulETH 2025',
+    tag: 'Archive',
+    description: 'Archive and landing for Southern Italy’s biggest Web3 event.',
+    tech: 'Next.js · TypeScript',
     link: 'https://www.napuleth.org/archive/2025',
   },
   {
-    no: 7,
-    kicker: 'Culture',
-    headline: 'Phygital! Naples Craftsmanship Meets the NFT',
-    dek: 'Nifty Naples blends physical design and NFTs, onboarding non-crypto audiences with clear storytelling.',
+    index: '07',
+    title: 'Nifty Naples',
+    tag: 'Culture',
+    description:
+      'Phygital NFT experience blending Naples-inspired physical design with clear storytelling for non-crypto users.',
+    tech: 'React · NFTs',
     link: 'https://www.niftynaples.it/',
   },
   {
-    no: 8,
-    kicker: 'Business',
-    headline: 'Blockchain Consultancy Opens Its Doors to the World',
-    dek: 'Corporate site for Mood Global Services — services, case studies and technical capabilities, in print-quality polish.',
+    index: '08',
+    title: 'Mood Global Services',
+    tag: 'Corporate',
+    description:
+      'Corporate site for a blockchain solutions provider — services, case studies, capabilities.',
+    tech: 'React · TypeScript',
     link: 'https://moodglobalservices.com/',
   },
   {
-    no: 9,
-    kicker: 'Markets',
-    headline: 'Arbitrage Desk Publishes Live Numbers, Dares You to Look',
-    dek: 'Product and marketing site for Axiam Capital Group with live market data and analytics dashboards.',
+    index: '09',
+    title: 'Axiam Capital',
+    tag: 'Markets',
+    description:
+      'Product site for a crypto arbitrage platform with live market data and analytics dashboards.',
+    tech: 'React · Live Data',
     link: 'https://axiamcapitalgroup.xyz/',
   },
   {
-    no: 10,
-    kicker: 'Arts · Solo Full-Stack',
-    headline:
-      'One-Man Newsroom Builds Entire NFT Marketplace; Gas Fees Not Invited',
-    dek: 'Artrise: a marketplace for artists on Firebase with smart contracts featuring gasless minting, meta-transactions and NFT auctions.',
+    index: '10',
+    title: 'Artrise',
+    tag: 'NFT Marketplace',
+    description:
+      'Solo full-stack build: marketplace for artists with gasless minting, meta-transactions and NFT auctions.',
+    tech: 'Firebase · Smart Contracts',
   },
   {
-    no: 11,
-    kicker: 'Mobile',
-    headline: 'Fifty Screens and a Map: Event Discovery Goes Mobile',
-    dek: 'Connections-AI: React Native/Expo app for finding nearby events, Stripe ticketing, QR check-in, Resend invitations, Better Auth with OTP and social sign-in, in English and Italian.',
+    index: '11',
+    title: 'Connections-AI',
+    tag: 'Mobile',
+    description:
+      '50-screen React Native/Expo app: event discovery on a map, Stripe ticketing, QR check-in, Resend invitations, Better Auth, EN/IT.',
+    tech: 'React Native · Expo · Stripe · Firebase',
   },
   {
-    no: 12,
-    kicker: 'Technology',
-    headline: 'Machines Now Write Websites; Monorepo Holds the Presses',
-    dek: 'SiteLab: pnpm monorepo, two Next.js 16 apps and three shared packages. Multi-provider A.I. orchestration with RAG, multi-tenant Supabase + pgvector, 26 tables, real-time generation monitoring.',
+    index: '12',
+    title: 'SiteLab',
+    tag: 'A.I. SaaS',
+    description:
+      'A.I. website-generation platform: pnpm monorepo, two Next.js 16 apps, multi-provider orchestration with RAG, multi-tenant Supabase + pgvector, real-time generation monitoring.',
+    tech: 'Next.js 16 · AI Gateway · V0 SDK · pgvector',
   },
   {
-    no: 13,
-    kicker: 'Business · SaaS',
-    headline:
-      'Business Plans, Valuations & Pitch Decks — Drafted by Artificial Minds',
-    dek: 'Silicon Plan: Next.js 15 + React 19 platform with a 25-component drag-and-drop plan editor, 6 canvas templates, financial projections with 6 valuation methods, LiveKit consultant marketplace, GPT-4o, Clerk auth, and PDF/DOCX/PPTX/Excel export.',
+    index: '13',
+    title: 'Silicon Plan',
+    tag: 'A.I. SaaS',
+    description:
+      'A.I. business-planning platform: drag-and-drop plan editor, 6 canvas templates, financial projections with 6 valuation methods, consultant marketplace with LiveKit video, multi-format export, EN/IT.',
+    tech: 'Next.js 15 · React 19 · GPT-4o · Clerk · LiveKit',
   },
 ];
 
-export interface MarketRow {
-  symbol: string;
-  move: 'up' | 'down';
-  quote: string;
-}
-
-export const marketRows: MarketRow[] = [
-  { symbol: 'TYPESCRIPT', move: 'up', quote: '99.4' },
-  { symbol: 'REACT', move: 'up', quote: '98.7' },
-  { symbol: 'NEXT.JS', move: 'up', quote: '97.2' },
-  { symbol: 'SOLIDITY', move: 'up', quote: '94.1' },
-  { symbol: 'A.I. AGENTS', move: 'up', quote: '96.8' },
-  { symbol: 'COFFEE', move: 'up', quote: '∞' },
-  { symbol: 'BUGS', move: 'down', quote: '0.3' },
-];
-
-export const aiBullets = [
+export const machines = [
   'Design and implementation of A.I. agents and multi-agent systems.',
-  'MCP (Model Context Protocol) servers and clients — wiring tools, APIs and external systems straight into LLMs.',
-  'Multi-provider A.I. orchestration with workflows, RAG pipelines and cost analytics.',
+  'MCP servers and clients — wiring tools, APIs and external systems straight into LLMs.',
+  'Multi-provider orchestration with workflows, RAG pipelines and cost analytics.',
   'A.I.-powered SaaS: business-plan generation, website generation, chat assistants.',
-  'Agent workflows embedded in Next.js and Node.js apps for automation, data processing and decision support.',
+  'Agent workflows inside Next.js and Node.js apps — automation, data processing, decision support.',
 ];
