@@ -1,11 +1,46 @@
+@font-face {
+  font-family: 'ChiKareGo2';
+  src:
+    url('/fonts/ChiKareGo2.woff2') format('woff2'),
+    url('/fonts/ChiKareGo2.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --color-bg: #000000;
-  --color-text: #ecf0e6;
+  /* world palette — moorish night to sunrise */
+  --ink: #0a0817;
+  --night: #16102e;
+  --night-2: #221a48;
+  --paper: #f0ead8;
+  --paper-dim: #b8b0c8;
+  --gold: #ffd073;
+  --sand: #e8c87a;
+  --terracotta: #c2502f;
+  --coral: #ff8a5c;
+  --teal: #2fbf9b;
+  --mint: #4dffd2;
+  --violet: #8a74d8;
 
-  --font-display: 'BBH Bartle', 'Arial Black', sans-serif;
-  --font-body: 'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  /* item rarities */
+  --rarity-common: #9aa3b2;
+  --rarity-rare: #5aa7ff;
+  --rarity-epic: #b78aff;
+  --rarity-legendary: #ffb84d;
+
+  /* surfaces */
+  --panel: rgba(13, 10, 32, 0.86);
+  --panel-border: #3a2a66;
+  --panel-edge: rgba(255, 208, 115, 0.25);
+
+  --font-pixel: 'ChiKareGo2', 'Courier New', monospace;
   --font-mono: 'Azeret Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-body: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
 
-  --frame-inset: 16px;
-  --frame-border: 3px;
+  /* continuous journey progress, written by the render loop */
+  --journey: 0;
+
+  --content-max: 920px;
+  --pad-x: clamp(20px, 5vw, 64px);
 }

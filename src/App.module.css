@@ -1,4 +1,70 @@
-.page {
-  min-height: 100dvh;
-  background: var(--color-bg);
+.main {
+  position: relative;
+  z-index: 10;
+}
+
+.skipLink {
+  position: fixed;
+  top: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--gold);
+  color: var(--ink);
+  padding: 10px 16px;
+  transition: top 150ms ease;
+}
+
+.skipLink:focus-visible {
+  top: 12px;
+}
+
+.grade {
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.07) 0 1px,
+      transparent 1px 3px
+    ),
+    radial-gradient(
+      ellipse at center,
+      transparent 58%,
+      rgba(5, 3, 14, 0.38) 100%
+    );
+}
+
+.boot {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 500ms steps(6, end);
+}
+
+.bootDone {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.bootText {
+  font-family: var(--font-pixel);
+  font-size: 20px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  animation: bootBlink 0.8s steps(2, end) infinite;
+}
+
+@keyframes bootBlink {
+  50% {
+    opacity: 0.35;
+  }
 }
