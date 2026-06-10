@@ -1,0 +1,74 @@
+.ticker {
+  display: flex;
+  align-items: stretch;
+  background: var(--ink);
+  color: var(--paper);
+  overflow: hidden;
+  border-top: 1px solid var(--paper);
+}
+
+.label {
+  flex: none;
+  display: grid;
+  place-items: center;
+  background: var(--red);
+  font-family: var(--font-headline);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 9px 16px 8px;
+}
+
+.window {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  /* Soft fade at the seam */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 4%,
+    #000 96%,
+    transparent
+  );
+}
+
+.reel {
+  display: flex;
+  flex: none;
+  align-items: center;
+  white-space: nowrap;
+  animation: scroll 48s linear infinite;
+}
+
+.ticker:hover .reel {
+  animation-play-state: paused;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-type);
+  font-size: 12.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.star {
+  color: var(--red);
+  margin: 0 22px;
+  font-size: 10px;
+}
+
+@keyframes scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reel {
+    animation: none;
+  }
+}

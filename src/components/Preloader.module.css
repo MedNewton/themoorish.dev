@@ -1,0 +1,152 @@
+.press {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  pointer-events: all;
+}
+
+.curtainTop,
+.curtainBottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50.5%;
+  background: var(--ink);
+  transition: transform 0.9s var(--ease-snap);
+}
+
+.curtainTop {
+  top: 0;
+  border-bottom: 4px solid var(--paper);
+}
+
+.curtainBottom {
+  bottom: 0;
+}
+
+.inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--paper);
+  padding: 0 24px;
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s ease;
+}
+
+.extra {
+  font-family: var(--font-type);
+  font-size: clamp(11px, 1.6vw, 14px);
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+  color: var(--paper);
+  opacity: 0.85;
+  animation: blink 1.1s steps(2, start) infinite;
+}
+
+.extra span {
+  color: var(--red);
+}
+
+.masthead {
+  font-family: var(--font-blackletter);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 9vw, 6rem);
+  line-height: 1.1;
+  margin: 18px 0 26px;
+  animation: stamp 0.7s var(--ease-out) both;
+}
+
+.stage {
+  font-family: var(--font-type);
+  font-size: clamp(11px, 1.5vw, 13px);
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  min-height: 1.6em;
+  opacity: 0.75;
+}
+
+.barTrack {
+  width: min(340px, 70vw);
+  height: 6px;
+  margin: 18px auto 12px;
+  border: 1px solid var(--paper);
+  padding: 1px;
+}
+
+.barInk {
+  height: 100%;
+  background: var(--red);
+  transition: width 0.1s linear;
+}
+
+.count {
+  font-family: var(--font-headline);
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: 0.08em;
+}
+
+.count span {
+  font-size: 0.55em;
+  opacity: 0.5;
+  letter-spacing: 0.2em;
+}
+
+/* ── Exit ─────────────────────────────────────────────────── */
+.exiting {
+  pointer-events: none;
+}
+
+.exiting .curtainTop {
+  transform: translateY(-101%);
+}
+
+.exiting .curtainBottom {
+  transform: translateY(101%);
+}
+
+.exiting .inner {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+@keyframes stamp {
+  0% {
+    opacity: 0;
+    transform: scale(1.35);
+    filter: blur(3px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(0.98);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curtainTop,
+  .curtainBottom {
+    transition: opacity 0.2s ease;
+  }
+
+  .exiting .curtainTop,
+  .exiting .curtainBottom {
+    transform: none;
+    opacity: 0;
+  }
+}
