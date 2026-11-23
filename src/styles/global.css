@@ -135,20 +135,43 @@ h2 {
 /* ---------- header ---------- */
 header {
   display: flex;
+  flex-wrap: wrap;
+  gap: 18px 12px;
   justify-content: space-between;
   align-items: center;
   padding-top: 44px;
 }
 .sig {
-  font-family: var(--hand);
-  font-size: 34px;
-  line-height: 1;
-  transform: rotate(-4deg);
   display: inline-block;
+  line-height: 0;
+  transform-origin: left center;
+  transform: rotate(-3deg);
   transition: transform 0.5s var(--spring);
 }
 .sig:hover {
-  transform: rotate(-8deg) scale(1.06);
+  transform: rotate(-5deg) scale(1.04);
+}
+/* the logo is pen strokes that draw themselves in writing order */
+.signature {
+  height: 38px;
+  width: auto;
+  display: block;
+  overflow: visible;
+}
+.signature path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1 2;
+  animation: write var(--t) cubic-bezier(0.45, 0.05, 0.55, 0.95) var(--at)
+    backwards;
+}
+@keyframes write {
+  from {
+    stroke-dashoffset: 1.06;
+  }
 }
 .open {
   display: inline-flex;

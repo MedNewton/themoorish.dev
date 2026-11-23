@@ -1,5 +1,6 @@
 import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
 import { experience, identity } from '../data/profile';
+import Signature from './Signature';
 import { countIn, projects, toolkit, type ToolkitRow } from '../data/projects';
 import { copyText, scrollToId, useReducedMotion, useReveal } from '../hooks';
 
@@ -12,13 +13,13 @@ export function Header() {
       <a
         className="sig"
         href="#overview"
-        aria-label={`${identity.name}, back to top`}
+        aria-label="med, the moorish. Back to top"
         onClick={(e) => {
           e.preventDefault();
           scrollToId('overview', reduced);
         }}
       >
-        med
+        <Signature />
       </a>
       <a
         className="open"
