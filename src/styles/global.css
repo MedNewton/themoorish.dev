@@ -16,19 +16,7 @@
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   --spring: cubic-bezier(0.3, 1.5, 0.5, 1);
 }
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme='dark']) {
-    color-scheme: light;
-    --bg: #fafafa;
-    --ink: #18181b;
-    --mute: #6b6b74;
-    --dim: #a1a1aa;
-    --line: rgba(24, 24, 27, 0.09);
-    --chip: #efeff1;
-    --dock: rgba(255, 255, 255, 0.8);
-    --shade: rgba(0, 0, 0, 0.45);
-  }
-}
+/* Dark is the default. Light applies only when the visitor picks it. */
 :root[data-theme='light'] {
   color-scheme: light;
   --bg: #fafafa;

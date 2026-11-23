@@ -85,9 +85,7 @@ const THEME_KEY = 'theme';
 export function useTheme() {
   const toggle = useCallback(() => {
     const root = document.documentElement;
-    const current: Theme =
-      (root.dataset.theme as Theme | undefined) ??
-      (query('(prefers-color-scheme: light)')?.matches ? 'light' : 'dark');
+    const current: Theme = root.dataset.theme === 'light' ? 'light' : 'dark';
     const next: Theme = current === 'dark' ? 'light' : 'dark';
     root.dataset.theme = next;
     try {
