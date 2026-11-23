@@ -2,6 +2,7 @@ import { Dock, SideNav } from './components/Chrome';
 import {
   Contact,
   Doodles,
+  Experience,
   Header,
   Intro,
   Toolkit,
@@ -19,6 +20,7 @@ export default function App() {
         <Header />
         <Intro />
         <Work />
+        <Experience />
         <Toolkit />
         <Contact />
       </main>

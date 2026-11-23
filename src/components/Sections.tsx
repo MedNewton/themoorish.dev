@@ -1,5 +1,5 @@
 import { useEffect, useState, type CSSProperties, type ReactNode } from 'react';
-import { identity } from '../data/profile';
+import { experience, identity } from '../data/profile';
 import { countIn, projects, toolkit, type ToolkitRow } from '../data/projects';
 import { copyText, scrollToId, useReducedMotion, useReveal } from '../hooks';
 
@@ -107,6 +107,29 @@ const ICONS: Record<ToolkitRow['icon'], ReactNode> = {
     </>
   ),
 };
+
+export function Experience() {
+  const ref = useReveal<HTMLElement>();
+  return (
+    <section id="experience" className="rv" ref={ref}>
+      <div className="shead">
+        <h2>Experience</h2>
+      </div>
+      {experience.map((role) => (
+        <div className="x" key={role.company}>
+          <span className="mark" aria-hidden="true">
+            {role.company[0]}
+          </span>
+          <div>
+            <b>{role.company}</b>
+            <span>{role.title}</span>
+          </div>
+          <em>{role.period}</em>
+        </div>
+      ))}
+    </section>
+  );
+}
 
 export function Toolkit() {
   const ref = useReveal<HTMLElement>();

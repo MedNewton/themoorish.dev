@@ -11,6 +11,7 @@ import {
 const SECTIONS = [
   { id: 'overview', label: 'Overview' },
   { id: 'work', label: 'Things I build' },
+  { id: 'experience', label: 'Experience' },
   { id: 'toolkit', label: 'Toolkit' },
   { id: 'contact', label: 'Contact' },
 ];

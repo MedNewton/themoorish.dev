@@ -81,3 +81,22 @@ export const aiCapabilities = [
   'AI-powered SaaS products: business-plan generation, website generation, AI chat assistants.',
   'Agent workflows integrated into Next.js and Node.js apps for automation, data processing and decision support.',
 ];
+
+export interface Role {
+  company: string;
+  title: string;
+  period: string;
+}
+
+export const experience: Role[] = [
+  {
+    company: 'Moods',
+    title: 'Senior Full-Stack Developer',
+    period: 'Aug 2023 – Present',
+  },
+  {
+    company: 'Artrise',
+    title: 'Full-Stack Developer',
+    period: '2022',
+  },
+];
