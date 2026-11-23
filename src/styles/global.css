@@ -135,49 +135,67 @@ h2 {
 /* ---------- header ---------- */
 header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding-top: 44px;
 }
 .sig {
+  font-family: var(--hand);
+  font-size: 34px;
+  line-height: 1;
+  transform: rotate(-4deg);
   display: inline-block;
-  line-height: 0;
-  transform: rotate(-3deg);
   transition: transform 0.5s var(--spring);
 }
 .sig:hover {
-  transform: rotate(-5deg) scale(1.04);
+  transform: rotate(-8deg) scale(1.06);
 }
-/* the logo: a pen line traces each letter of the script font, then the ink
-   fills in behind it */
-.signature {
-  height: 44px;
-  width: auto;
-  max-width: 100%;
+.open {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--chip);
+  color: var(--mute);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font-size: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: color 0.3s;
+}
+.open i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  animation: ping 2.2s infinite;
+}
+@keyframes ping {
+  0% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 7px rgba(74, 222, 128, 0);
+  }
+}
+.open span {
   display: block;
-  overflow: visible;
+  transition: transform 0.35s cubic-bezier(0.7, 0, 0.2, 1);
 }
-.signature path {
-  fill: currentColor;
-  stroke: currentColor;
-  stroke-width: 1.1;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 1 2;
-  animation:
-    write var(--t) cubic-bezier(0.45, 0.05, 0.55, 0.95) var(--at) backwards,
-    ink calc(var(--t) * 0.6) ease-out calc(var(--at) + var(--t) * 0.55)
-      backwards;
+.open span + span {
+  position: absolute;
+  left: 28px;
+  transform: translateY(160%);
 }
-@keyframes write {
-  from {
-    stroke-dashoffset: 1.06;
-  }
+.open:hover {
+  color: var(--ink);
 }
-@keyframes ink {
-  from {
-    fill-opacity: 0;
-  }
+.open:hover span:first-of-type {
+  transform: translateY(-160%);
+}
+.open:hover span + span {
+  transform: none;
 }
 
 /* ---------- intro ---------- */
