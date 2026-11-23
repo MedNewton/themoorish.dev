@@ -21,18 +21,6 @@ export function Header() {
       >
         <Signature />
       </a>
-      <a
-        className="open"
-        href="#contact"
-        onClick={(e) => {
-          e.preventDefault();
-          scrollToId('contact', reduced);
-        }}
-      >
-        <i />
-        <span>Open to collaborations</span>
-        <span aria-hidden="true">Let's talk</span>
-      </a>
     </header>
   );
 }

@@ -135,90 +135,49 @@ h2 {
 /* ---------- header ---------- */
 header {
   display: flex;
-  flex-wrap: wrap;
-  gap: 18px 12px;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding-top: 44px;
 }
 .sig {
   display: inline-block;
   line-height: 0;
-  transform-origin: left center;
   transform: rotate(-3deg);
   transition: transform 0.5s var(--spring);
 }
 .sig:hover {
   transform: rotate(-5deg) scale(1.04);
 }
-/* the logo is pen strokes that draw themselves in writing order */
+/* the logo: a pen line traces each letter of the script font, then the ink
+   fills in behind it */
 .signature {
-  height: 38px;
+  height: 44px;
   width: auto;
+  max-width: 100%;
   display: block;
   overflow: visible;
 }
 .signature path {
-  fill: none;
+  fill: currentColor;
   stroke: currentColor;
-  stroke-width: 1.9;
+  stroke-width: 1.1;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-dasharray: 1 2;
-  animation: write var(--t) cubic-bezier(0.45, 0.05, 0.55, 0.95) var(--at)
-    backwards;
+  animation:
+    write var(--t) cubic-bezier(0.45, 0.05, 0.55, 0.95) var(--at) backwards,
+    ink calc(var(--t) * 0.6) ease-out calc(var(--at) + var(--t) * 0.55)
+      backwards;
 }
 @keyframes write {
   from {
     stroke-dashoffset: 1.06;
   }
 }
-.open {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--chip);
-  color: var(--mute);
-  border-radius: 999px;
-  padding: 7px 14px;
-  font-size: 12px;
-  position: relative;
-  overflow: hidden;
-  transition: color 0.3s;
-}
-.open i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #4ade80;
-  animation: ping 2.2s infinite;
-}
-@keyframes ping {
-  0% {
-    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5);
+@keyframes ink {
+  from {
+    fill-opacity: 0;
   }
-  70%,
-  100% {
-    box-shadow: 0 0 0 7px rgba(74, 222, 128, 0);
-  }
-}
-.open span {
-  display: block;
-  transition: transform 0.35s cubic-bezier(0.7, 0, 0.2, 1);
-}
-.open span + span {
-  position: absolute;
-  left: 28px;
-  transform: translateY(160%);
-}
-.open:hover {
-  color: var(--ink);
-}
-.open:hover span:first-of-type {
-  transform: translateY(-160%);
-}
-.open:hover span + span {
-  transform: none;
 }
 
 /* ---------- intro ---------- */
